@@ -10,13 +10,14 @@ const CourseColumnSchema = new Schema({
     classifyName: { type: String },
     introduction: { type: String },
     subtitle: { type: String },
-    popular: { type: Boolean },
-    backgroundUrl: { type: String },
     imgUrl: { type: String },
-    lastCourse: { type: String },
+    backgroundUrl: { type: String },
+    popular: { type: Boolean },
     media: { type: Boolean },
+    type: { type: String },
     createTime: { type: Number, default: Date.now().valueOf() },
-    updateTime: { type: Number, default: Date.now().valueOf() }
+    updateTime: { type: Number, default: Date.now().valueOf() },
+    numberOfUpdate: { type: Number, default: 1 } // 第几期课程
 }, { versionKey: false });
 CourseColumnSchema.index({ name: 1 });
 const CourseColumnModel = mongoose.model('courseColumn', CourseColumnSchema);

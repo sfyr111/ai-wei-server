@@ -28,8 +28,21 @@ export const getUsers = async function (req: any, res: any, next: any): Promise<
 }
 
 export const getUserById = async function (req: any, res: any, next: any): Promise<any> {
+  const { id } = req.params
+  const user = await UserModel.findOne({ _id: id })
+    .select(DEFAULT_PROJECTION)
+    .catch((e: any): void => {
+      throw new Error('getUserById error')
+    })
+  res.json({
+    code: 0,
+    user
+  })
+}
+
+export const getUserByOpenId = async function (req: any, res: any, next: any): Promise<any> {
   const { userId } = req.params
-  const user = await UserModel.findOne({ _id: userId })
+  const user = await UserModel.findOne({ openId: userId })
     .select(DEFAULT_PROJECTION)
     .catch((e: any): void => {
       throw new Error('getUserById error')
@@ -81,7 +94,7 @@ export const loginWithWechat = async function (req: any, res: any, next: any): P
 }
 
 export const getFavoriteColumns = async function (req: any, res: any, next: any): Promise<any> {
-  const favoriteColumnIds: string[] = await UserModel.findOne({ _id: req.params.userId }).then((data: any): string[] => data.favoriteColumnId)
+  const favoriteColumnIds: string[] = await UserModel.findOne({ openId: req.params.userId }).then((data: any): string[] => data.favoriteColumnId)
   const columns = await CourseColumn.find({ '_id': { $in: favoriteColumnIds } })
     .then((columns: object[]): Array<object>  => {
       return sortColumnByIdsOrder(favoriteColumnIds, <object[]>columns).reverse()
@@ -98,7 +111,7 @@ export const getFavoriteColumns = async function (req: any, res: any, next: any)
 
 export const addFavoriteColumn = async function (req: any, res: any, next: any): Promise<any> {
   const columns = await UserModel.findOneAndUpdate(
-    { _id: req.params.userId },
+    { openId: req.params.userId },
     { $addToSet: { favoriteColumnId: req.params.id}},
     { new: true })
   res.json({
@@ -109,7 +122,7 @@ export const addFavoriteColumn = async function (req: any, res: any, next: any):
 
 export const deleteFavoriteColumn = async function (req: any, res: any, next: any): Promise<any> {
   const columns = await UserModel.findOneAndUpdate(
-    { _id: req.params.userId },
+    { openId: req.params.userId },
     { $pull: { favoriteColumnId: req.params.id}},
     { new: true })
   res.json({
@@ -119,11 +132,12 @@ export const deleteFavoriteColumn = async function (req: any, res: any, next: an
 }
 
 export const getHistoryColumns = async function (req: any, res: any, next: any): Promise<any> {
-  const historyColumnIds: string[] = await UserModel.findOne({ _id: req.params.userId })
+  const historyColumnIds: string[] = await UserModel.findOne({ openId: req.params.userId })
     .then((data: any): string[] => [...new Set(<string[]>data.historyColumnId)])
-
+console.log(historyColumnIds)
   const columns = await CourseColumn.find({ '_id': { $in: historyColumnIds } })
     .then((columns: object[]): object[]  => {
+    console.log(columns)
       return sortColumnByIdsOrder(historyColumnIds, <object[]>columns).reverse()
     })
 
@@ -135,7 +149,7 @@ export const getHistoryColumns = async function (req: any, res: any, next: any):
 
 export const addHistoryColumn = async function (req: any, res: any, next: any): Promise<any> {
   const columns = await UserModel.findOneAndUpdate(
-    { _id: req.params.userId },
+    { openId: req.params.userId },
     { $push: { historyColumnId: req.params.id}},
     { new: true })
   res.json({
@@ -146,7 +160,7 @@ export const addHistoryColumn = async function (req: any, res: any, next: any): 
 
 export const deleteHistoryColumn = async function (req: any, res: any, next: any): Promise<any> {
   const columns = await UserModel.findOneAndUpdate(
-    { _id: req.params.userId },
+    { openId: req.params.userId },
     { $pull: { historyColumnId: req.params.id}},
     { new: true })
   res.json({

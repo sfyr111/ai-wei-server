@@ -12,7 +12,6 @@ const CourseAudioSchema = new Schema({
   classifyName: { type: String },
   duration: { type: Number }, // 音频播放时长
   audioUrl: { type: String }, // 音频地址
-  article: { type: String }, // 课程相应的富文本
   createTime: { type: Number, default: Date.now().valueOf() },
   updateTime: { type: Number, default: Date.now().valueOf() }
 }, { versionKey: false })

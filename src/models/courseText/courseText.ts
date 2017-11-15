@@ -10,7 +10,8 @@ const CourseTextSchema = new Schema({
   columnName: { type: String },
   classifyId: { type: String, ref: 'courseClassify' },
   classifyName: { type: String },
-  article: { type: String }, // 课程相应的富文本
+  richText: { type: String }, // 课程相应的富文本
+  audio: { type: Schema.Types.Mixed, default: { title: '', url: '', playTime: -1, fileSize: '0M' } }, // 文本课程音频数据
   createTime: { type: Number, default: Date.now().valueOf() },
   updateTime: { type: Number, default: Date.now().valueOf() }
 }, { versionKey: false })

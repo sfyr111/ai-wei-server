@@ -34,8 +34,22 @@ exports.getUsers = function (req, res, next) {
 };
 exports.getUserById = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
+        const { id } = req.params;
+        const user = yield user_1.default.findOne({ _id: id })
+            .select(DEFAULT_PROJECTION)
+            .catch((e) => {
+            throw new Error('getUserById error');
+        });
+        res.json({
+            code: 0,
+            user
+        });
+    });
+};
+exports.getUserByOpenId = function (req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
         const { userId } = req.params;
-        const user = yield user_1.default.findOne({ _id: userId })
+        const user = yield user_1.default.findOne({ openId: userId })
             .select(DEFAULT_PROJECTION)
             .catch((e) => {
             throw new Error('getUserById error');
@@ -88,7 +102,7 @@ exports.loginWithWechat = function (req, res, next) {
 };
 exports.getFavoriteColumns = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const favoriteColumnIds = yield user_1.default.findOne({ _id: req.params.userId }).then((data) => data.favoriteColumnId);
+        const favoriteColumnIds = yield user_1.default.findOne({ openId: req.params.userId }).then((data) => data.favoriteColumnId);
         const columns = yield courseColumn_1.default.find({ '_id': { $in: favoriteColumnIds } })
             .then((columns) => {
             return sortColumnByIdsOrder(favoriteColumnIds, columns).reverse();
@@ -104,7 +118,7 @@ exports.getFavoriteColumns = function (req, res, next) {
 };
 exports.addFavoriteColumn = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const columns = yield user_1.default.findOneAndUpdate({ _id: req.params.userId }, { $addToSet: { favoriteColumnId: req.params.id } }, { new: true });
+        const columns = yield user_1.default.findOneAndUpdate({ openId: req.params.userId }, { $addToSet: { favoriteColumnId: req.params.id } }, { new: true });
         res.json({
             code: 0,
             columns
@@ -113,7 +127,7 @@ exports.addFavoriteColumn = function (req, res, next) {
 };
 exports.deleteFavoriteColumn = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const columns = yield user_1.default.findOneAndUpdate({ _id: req.params.userId }, { $pull: { favoriteColumnId: req.params.id } }, { new: true });
+        const columns = yield user_1.default.findOneAndUpdate({ openId: req.params.userId }, { $pull: { favoriteColumnId: req.params.id } }, { new: true });
         res.json({
             code: 0,
             columns
@@ -122,10 +136,12 @@ exports.deleteFavoriteColumn = function (req, res, next) {
 };
 exports.getHistoryColumns = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const historyColumnIds = yield user_1.default.findOne({ _id: req.params.userId })
+        const historyColumnIds = yield user_1.default.findOne({ openId: req.params.userId })
             .then((data) => [...new Set(data.historyColumnId)]);
+        console.log(historyColumnIds);
         const columns = yield courseColumn_1.default.find({ '_id': { $in: historyColumnIds } })
             .then((columns) => {
+            console.log(columns);
             return sortColumnByIdsOrder(historyColumnIds, columns).reverse();
         });
         res.json({
@@ -136,7 +152,7 @@ exports.getHistoryColumns = function (req, res, next) {
 };
 exports.addHistoryColumn = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const columns = yield user_1.default.findOneAndUpdate({ _id: req.params.userId }, { $push: { historyColumnId: req.params.id } }, { new: true });
+        const columns = yield user_1.default.findOneAndUpdate({ openId: req.params.userId }, { $push: { historyColumnId: req.params.id } }, { new: true });
         res.json({
             code: 0,
             columns
@@ -145,7 +161,7 @@ exports.addHistoryColumn = function (req, res, next) {
 };
 exports.deleteHistoryColumn = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const columns = yield user_1.default.findOneAndUpdate({ _id: req.params.userId }, { $pull: { historyColumnId: req.params.id } }, { new: true });
+        const columns = yield user_1.default.findOneAndUpdate({ openId: req.params.userId }, { $pull: { historyColumnId: req.params.id } }, { new: true });
         res.json({
             code: 0,
             columns

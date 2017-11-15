@@ -10,6 +10,9 @@ router.route('/')
 router.route('/:id')
   .get(User.getUserById)
 
+router.route('/openId/:userId')
+  .get(User.getUserByOpenId)
+
 // 收藏
 router.route('/:userId/favorite')
   .get(User.getFavoriteColumns)

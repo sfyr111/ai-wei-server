@@ -10,7 +10,8 @@ const CourseTextSchema = new Schema({
     columnName: { type: String },
     classifyId: { type: String, ref: 'courseClassify' },
     classifyName: { type: String },
-    article: { type: String },
+    richText: { type: String },
+    audio: { type: Schema.Types.Mixed, default: { title: '', url: '', playTime: -1, fileSize: '0M' } },
     createTime: { type: Number, default: Date.now().valueOf() },
     updateTime: { type: Number, default: Date.now().valueOf() }
 }, { versionKey: false });

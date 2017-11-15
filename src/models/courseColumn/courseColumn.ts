@@ -8,15 +8,16 @@ const CourseColumnSchema = new Schema({
   creator: { type: String, required: true },
   classifyId: { type: String, require: true, ref: 'courseClassify' },
   classifyName: { type: String },
-  introduction: { type: String }, // 简介
+  introduction: { type: String }, // 简介，富文本 可编辑字体大小，支持标题、段落、字体大小编辑功能
   subtitle: { type: String }, // 子标题
+  imgUrl: { type: String }, // 专栏标题图片 缩略图
+  backgroundUrl: { type: String }, // 专栏详情背景图片 详情背景图
   popular: { type: Boolean }, // 是否热门课程
-  backgroundUrl: { type: String }, // 专栏详情背景图片
-  imgUrl: { type: String }, // 专栏标题图片
-  lastCourse: { type: String }, // 最新课程的name
   media: { type: Boolean }, // 是否为媒体课程专栏
+  type: { type: String }, // 课程类型，文本: text, 音频: audio, 视频: video
   createTime: { type: Number, default: Date.now().valueOf() },
-  updateTime: { type: Number, default: Date.now().valueOf() }
+  updateTime: { type: Number, default: Date.now().valueOf() },
+  numberOfUpdate: { type: Number, default: 1 } // 第几期课程
 }, { versionKey: false })
 
 CourseColumnSchema.index({ name: 1 })

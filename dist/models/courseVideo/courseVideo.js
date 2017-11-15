@@ -12,7 +12,8 @@ const CourseVideoSchema = new Schema({
     classifyName: { type: String },
     duration: { type: Number },
     videoUrl: { type: String },
-    article: { type: String },
+    subtitle: { type: String },
+    imgUrl: { type: String },
     createTime: { type: Number, default: Date.now().valueOf() },
     updateTime: { type: Number, default: Date.now().valueOf() }
 }, { versionKey: false });

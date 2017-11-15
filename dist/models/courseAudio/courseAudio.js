@@ -12,7 +12,6 @@ const CourseAudioSchema = new Schema({
     classifyName: { type: String },
     duration: { type: Number },
     audioUrl: { type: String },
-    article: { type: String },
     createTime: { type: Number, default: Date.now().valueOf() },
     updateTime: { type: Number, default: Date.now().valueOf() }
 }, { versionKey: false });

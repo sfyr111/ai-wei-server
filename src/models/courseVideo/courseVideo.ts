@@ -12,7 +12,8 @@ const CourseVideoSchema = new Schema({
   classifyName: { type: String },
   duration: { type: Number }, // 视频播放时长
   videoUrl: { type: String }, // 视频地址
-  article: { type: String }, // 课程相应的富文本
+  subtitle: { type: String }, // 课程子标题
+  imgUrl: { type: String }, // 每个视频的配图
   createTime: { type: Number, default: Date.now().valueOf() },
   updateTime: { type: Number, default: Date.now().valueOf() }
 }, { versionKey: false })

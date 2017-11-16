@@ -11,7 +11,7 @@ import index from './routes/index'
 import user from './routes/user'
 import courseClassify from './routes/courseClassify'
 import courseColumn from './routes/courseColumn'
-import courseAudio from './routes/courseAudio'
+// import courseAudio from './routes/courseAudio'
 import courseVideo from './routes/courseVideo'
 import courseText from './routes/courseText'
 import banner from './routes/banner'
@@ -49,7 +49,7 @@ app.use('/', index)
 app.use('/user', user)
 app.use('/classify', courseClassify)
 app.use('/column', courseColumn)
-app.use('/audio', courseAudio)
+// app.use('/audio', courseAudio)
 app.use('/video', courseVideo)
 app.use('/text', courseText)
 app.use('/banner', banner)

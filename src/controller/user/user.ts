@@ -95,11 +95,10 @@ export const loginWithWechat = async function (req: any, res: any, next: any): P
 
 export const getFavoriteColumns = async function (req: any, res: any, next: any): Promise<any> {
   const favoriteColumnIds: string[] = await UserModel.findOne({ openId: req.params.userId }).then((data: any): string[] => data.favoriteColumnId)
-  const columns = await CourseColumn.find({ '_id': { $in: favoriteColumnIds } })
-    .then((columns: object[]): Array<object>  => {
-      return sortColumnByIdsOrder(favoriteColumnIds, <object[]>columns).reverse()
-    })
+
+  const columns: object[] = await _handleFavAndHisColumns(favoriteColumnIds)
     .catch(e => {
+      console.log(e)
       throw new Error ('getFavoriteColumns Error')
     })
 
@@ -132,13 +131,12 @@ export const deleteFavoriteColumn = async function (req: any, res: any, next: an
 }
 
 export const getHistoryColumns = async function (req: any, res: any, next: any): Promise<any> {
-  const historyColumnIds: string[] = await UserModel.findOne({ openId: req.params.userId })
-    .then((data: any): string[] => [...new Set(<string[]>data.historyColumnId)])
-console.log(historyColumnIds)
-  const columns = await CourseColumn.find({ '_id': { $in: historyColumnIds } })
-    .then((columns: object[]): object[]  => {
-    console.log(columns)
-      return sortColumnByIdsOrder(historyColumnIds, <object[]>columns).reverse()
+  const historyColumnIds: string[] = await UserModel.findOne({ openId: req.params.userId }).then((data: any): string[] => [...new Set(<string[]>data.historyColumnId)])
+
+  const columns: object[] = await _handleFavAndHisColumns(historyColumnIds)
+    .catch(e => {
+      console.log(e)
+      throw new Error ('getHistoryColumns Error')
     })
 
   res.json({
@@ -167,14 +165,6 @@ export const deleteHistoryColumn = async function (req: any, res: any, next: any
     code: 0,
     columns
   })
-}
-
-function sortColumnByIdsOrder (ids: string[], columns: object[]): object[] {
-  const sortColumns = ids.map((item, index) => {
-    const idx = ids.indexOf(columns[index].id)
-    return columns[idx]
-  })
-  return sortColumns
 }
 
 async function foundOrCreatedUser (user: any): Promise<any> {
@@ -220,4 +210,26 @@ async function createNewUser (params: WechatUser): Promise<any> {
       throw new Error('createNewUser error')
     })
   return created
+}
+
+function _sortColumnByIdsOrder (ids: string[], columns: object[]): object[] {
+  const sortColumns = ids.map((item, index) => {
+    const idx = ids.indexOf(columns[index]._id.toString())
+    return columns[idx]
+  })
+  return sortColumns
+}
+
+async function _filterFavoriteColumnIdsByColumns(ids: string[]): Promise<string[]> {
+  return await CourseColumn.find({}, { _id: 1 }).then(list => {
+    return ids.filter(el => list.find(val => val._id.toString() === el))
+  })
+}
+
+async function _handleFavAndHisColumns (columnIds: string[]): Promise<object[]> {
+  const ids: string[] = await _filterFavoriteColumnIdsByColumns(columnIds)
+  return await CourseColumn.find({ '_id': { $in: ids } })
+    .then((columns: object[]): Array<object>  => {
+      return _sortColumnByIdsOrder(ids, <object[]>columns).reverse()
+    })
 }

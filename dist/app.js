@@ -15,6 +15,7 @@ const courseColumn_1 = require("./routes/courseColumn");
 const courseAudio_1 = require("./routes/courseAudio");
 const courseVideo_1 = require("./routes/courseVideo");
 const courseText_1 = require("./routes/courseText");
+const banner_1 = require("./routes/banner");
 // import * as history from 'connect-history-api-fallback'
 require("./services/mongoose-service");
 var app = express();
@@ -44,6 +45,7 @@ app.use('/column', courseColumn_1.default);
 app.use('/audio', courseAudio_1.default);
 app.use('/video', courseVideo_1.default);
 app.use('/text', courseText_1.default);
+app.use('/banner', banner_1.default);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');

@@ -103,11 +103,9 @@ exports.loginWithWechat = function (req, res, next) {
 exports.getFavoriteColumns = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const favoriteColumnIds = yield user_1.default.findOne({ openId: req.params.userId }).then((data) => data.favoriteColumnId);
-        const columns = yield courseColumn_1.default.find({ '_id': { $in: favoriteColumnIds } })
-            .then((columns) => {
-            return sortColumnByIdsOrder(favoriteColumnIds, columns).reverse();
-        })
+        const columns = yield _handleFavAndHisColumns(favoriteColumnIds)
             .catch(e => {
+            console.log(e);
             throw new Error('getFavoriteColumns Error');
         });
         res.json({
@@ -136,13 +134,11 @@ exports.deleteFavoriteColumn = function (req, res, next) {
 };
 exports.getHistoryColumns = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const historyColumnIds = yield user_1.default.findOne({ openId: req.params.userId })
-            .then((data) => [...new Set(data.historyColumnId)]);
-        console.log(historyColumnIds);
-        const columns = yield courseColumn_1.default.find({ '_id': { $in: historyColumnIds } })
-            .then((columns) => {
-            console.log(columns);
-            return sortColumnByIdsOrder(historyColumnIds, columns).reverse();
+        const historyColumnIds = yield user_1.default.findOne({ openId: req.params.userId }).then((data) => [...new Set(data.historyColumnId)]);
+        const columns = yield _handleFavAndHisColumns(historyColumnIds)
+            .catch(e => {
+            console.log(e);
+            throw new Error('getHistoryColumns Error');
         });
         res.json({
             code: 0,
@@ -168,13 +164,6 @@ exports.deleteHistoryColumn = function (req, res, next) {
         });
     });
 };
-function sortColumnByIdsOrder(ids, columns) {
-    const sortColumns = ids.map((item, index) => {
-        const idx = ids.indexOf(columns[index].id);
-        return columns[idx];
-    });
-    return sortColumns;
-}
 function foundOrCreatedUser(user) {
     return __awaiter(this, void 0, void 0, function* () {
         // 找到并更新
@@ -221,5 +210,28 @@ function createNewUser(params) {
             throw new Error('createNewUser error');
         });
         return created;
+    });
+}
+function _sortColumnByIdsOrder(ids, columns) {
+    const sortColumns = ids.map((item, index) => {
+        const idx = ids.indexOf(columns[index]._id.toString());
+        return columns[idx];
+    });
+    return sortColumns;
+}
+function _filterFavoriteColumnIdsByColumns(ids) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return yield courseColumn_1.default.find({}, { _id: 1 }).then(list => {
+            return ids.filter(el => list.find(val => val._id.toString() === el));
+        });
+    });
+}
+function _handleFavAndHisColumns(columnIds) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const ids = yield _filterFavoriteColumnIdsByColumns(columnIds);
+        return yield courseColumn_1.default.find({ '_id': { $in: ids } })
+            .then((columns) => {
+            return _sortColumnByIdsOrder(ids, columns).reverse();
+        });
     });
 }

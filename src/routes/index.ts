@@ -21,6 +21,13 @@ router.route('/wechat-redirect')
     res.redirect(clientUrl)
   })
 
+router.route('/redirect/:url')
+  .get(function (req: any, res: any, next: any): void {
+    const url = `http://${req.params.url}`
+    const clientUrl = wechatClient.getAuthorizeURL(url, 'wechat-redirect', 'snsapi_base')
+    res.redirect(clientUrl)
+  })
+
 router.route('/wechat/login')
   .post(User.loginWithWechat)
 

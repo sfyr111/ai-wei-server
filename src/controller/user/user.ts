@@ -56,11 +56,12 @@ export const getUserByOpenId = async function (req: any, res: any, next: any): P
 // a day 24 * 60 * 60 * 1000
 export const loginWithWechat = async function (req: any, res: any, next: any): Promise<any> {
   const { code } = req.body
-  if (code === 'test') {
+  // if (code === 'test') {
+  if (process.env.NODE_ENV !== 'production') {
     res.json({
       code: 0,
       token: JWT.sign({
-        _id: '59ed9e3615f21c064131d34b',
+        _id: '000000000000000000000000',
         iat: Date.now(),
         expire: Date.now() + 24 * 60 * 60 * 1000
       }, Cipher.JWT_SECRET),
@@ -68,7 +69,7 @@ export const loginWithWechat = async function (req: any, res: any, next: any): P
         "_id": "000000000000000000000000",
         "sex": "1",
         "city": "Nanjing",
-        "openId": "0000000000000000000000000000",
+        "openId": "12345678",
         "name": "测试用户1",
         "country": "China",
         "province": "Jiangsu",

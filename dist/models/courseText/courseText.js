@@ -16,5 +16,5 @@ const CourseTextSchema = new Schema({
     updateTime: { type: Number, default: Date.now().valueOf() }
 }, { versionKey: false });
 CourseTextSchema.index({ name: 1 });
-const CourseTextModel = mongoose.model('courseText', CourseTextSchema);
+const CourseTextModel = process.env.NODE_ENV !== 'production' ? mongoose.model('courseTextTest', CourseTextSchema) : mongoose.model('courseText', CourseTextSchema);
 exports.default = CourseTextModel;

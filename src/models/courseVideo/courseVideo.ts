@@ -20,6 +20,6 @@ const CourseVideoSchema = new Schema({
 
 CourseVideoSchema.index({ name: 1 })
 
-const CourseVideoModel = mongoose.model('courseVideo', CourseVideoSchema)
+const CourseVideoModel = process.env.NODE_ENV !== 'production' ? mongoose.model('courseVideoTest', CourseVideoSchema) : mongoose.model('courseVideo', CourseVideoSchema)
 
 export default CourseVideoModel

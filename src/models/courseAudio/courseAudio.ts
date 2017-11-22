@@ -18,6 +18,7 @@ const CourseAudioSchema = new Schema({
 
 CourseAudioSchema.index({ name: 1 })
 
-const CourseAudioModel = process.env.NODE_ENV !== 'production' ? mongoose.model('courseAudioTest', CourseAudioSchema) : mongoose.model('courseAudio', CourseAudioSchema)
+// const CourseAudioModel = process.env.NODE_ENV !== 'production' ? mongoose.model('courseAudioTest', CourseAudioSchema) : mongoose.model('courseAudio', CourseAudioSchema)
+const CourseAudioModel = mongoose.model('courseAudio', CourseAudioSchema)
 
 export default CourseAudioModel

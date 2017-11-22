@@ -18,6 +18,7 @@ const CourseTextSchema = new Schema({
 
 CourseTextSchema.index({ name: 1 })
 
-const CourseTextModel = process.env.NODE_ENV !== 'production' ? mongoose.model('courseTextTest', CourseTextSchema) : mongoose.model('courseText', CourseTextSchema)
+// const CourseTextModel = process.env.NODE_ENV !== 'production' ? mongoose.model('courseTextTest', CourseTextSchema) : mongoose.model('courseText', CourseTextSchema)
+const CourseTextModel = mongoose.model('courseText', CourseTextSchema)
 
 export default CourseTextModel

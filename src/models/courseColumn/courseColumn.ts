@@ -22,6 +22,7 @@ const CourseColumnSchema = new Schema({
 
 CourseColumnSchema.index({ name: 1 })
 
-const CourseColumnModel = process.env.NODE_ENV !== 'production' ? mongoose.model('courseColumnTest', CourseColumnSchema) : mongoose.model('courseColumn', CourseColumnSchema)
+// const CourseColumnModel = process.env.NODE_ENV !== 'production' ? mongoose.model('courseColumnTest', CourseColumnSchema) : mongoose.model('courseColumn', CourseColumnSchema)
+const CourseColumnModel = mongoose.model('courseColumn', CourseColumnSchema)
 
 export default CourseColumnModel

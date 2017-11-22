@@ -16,5 +16,6 @@ const CourseAudioSchema = new Schema({
     updateTime: { type: Number, default: Date.now().valueOf() }
 }, { versionKey: false });
 CourseAudioSchema.index({ name: 1 });
-const CourseAudioModel = process.env.NODE_ENV !== 'production' ? mongoose.model('courseAudioTest', CourseAudioSchema) : mongoose.model('courseAudio', CourseAudioSchema);
+// const CourseAudioModel = process.env.NODE_ENV !== 'production' ? mongoose.model('courseAudioTest', CourseAudioSchema) : mongoose.model('courseAudio', CourseAudioSchema)
+const CourseAudioModel = mongoose.model('courseAudio', CourseAudioSchema);
 exports.default = CourseAudioModel;

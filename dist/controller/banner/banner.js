@@ -28,3 +28,21 @@ exports.getAllBanner = function (req, res, next) {
         });
     });
 };
+exports.getBannerById = function (req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const { page = 0, pageSize = 10 } = req.body;
+        const flow = banner_1.default.find({ _id: req.params.id });
+        flow.select(DEFAULT_PROJECTION);
+        flow.skip(page * pageSize);
+        flow.limit(pageSize);
+        const banner = yield flow
+            .catch((e) => {
+            console.log(e);
+            throw new Error('getBannerById error');
+        });
+        res.json({
+            code: 0,
+            banner
+        });
+    });
+};

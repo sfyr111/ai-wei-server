@@ -6,4 +6,6 @@ const router = express.Router();
 // text
 router.route('/')
     .get(Banner.getAllBanner);
+router.route('/:id')
+    .get(Banner.getBannerById);
 exports.default = router;

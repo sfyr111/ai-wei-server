@@ -7,4 +7,7 @@ const router = express.Router()
 router.route('/')
   .get(Banner.getAllBanner)
 
+router.route('/:id')
+  .get(Banner.getBannerById)
+
 export default router

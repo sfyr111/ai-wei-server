@@ -4,7 +4,7 @@ import * as path from 'path'
 import * as logger from 'morgan'
 import * as cookieParser from 'cookie-parser'
 import * as bodyParser from 'body-parser'
-// import * as session from 'express-session'
+import * as session from 'express-session'
 import * as cors from 'cors'
 
 import index from './routes/index'
@@ -37,13 +37,14 @@ app.use(cookieParser())
 app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')))
 
-// app.use(session({
-//   secret: 'nice_to_meet_you',
-//   cookie: {
-//     maxAge: 60*1000,
-//     secure: false
-//   }
-// }))
+app.use(session({
+  secret: 'nice_to_meet_you',
+  name: 'aiwei',
+  cookie: {
+    maxAge: 60*1000,
+    secure: false
+  }
+}))
 
 app.use('/', index)
 app.use('/user', user)

@@ -2,6 +2,17 @@ import CourseVideoModel from '../../models/courseVideo/courseVideo'
 
 const DEFAULT_PROJECTION = { __v: 0 }
 
+export const addPlayCount = async function (req: any, res: any, next: any): Promise<any> {
+  await CourseVideoModel.findByIdAndUpdate({ _id: req.params.id }, { $inc: { playCount: 1 }}, { new: true })
+    .catch((e: any) => {
+      console.log(e)
+      throw new Error('addPlayCount error')
+    })
+  res.json({
+    code: 0
+  })
+}
+
 export const getAllVideo = async function (req: any, res: any, next: any): Promise<any> {
   const { page = 0, pageSize = 10 } = req.body
   const flow = CourseVideoModel.find({})

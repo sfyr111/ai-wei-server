@@ -10,11 +10,11 @@ router.route('/')
 // 获取单个视频课程
 router.route('/:id')
   .get(CourseVideo.getOneVideoById)
+  .post(CourseVideo.addPlayCount)
 
 // 获取某id专栏下的所有视频课程
 router.route('/column/:columnId')
   .get(CourseVideo.getManyVideoByColumnId)
-
 // 获取某id分类下的所有视频课程
 router.route('/classify/:classifyId')
   .get(CourseVideo.getManyVideoByClassifyId)

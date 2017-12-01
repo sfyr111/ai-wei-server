@@ -13,7 +13,7 @@ const CourseColumnSchema = new Schema({
   imgUrl: { type: String }, // 专栏标题图片 缩略图
   backgroundUrl: { type: String }, // 专栏详情背景图片 详情背景图
   popular: { type: Boolean }, // 是否热门课程
-  media: { type: Boolean }, // 是否为媒体课程专栏
+  // media: { type: Boolean }, // 是否为媒体课程专栏
   type: { type: String }, // 课程类型，文本: text, 音频: audio, 视频: video
   createTime: { type: Number, default: Date.now().valueOf() },
   updateTime: { type: Number, default: Date.now().valueOf() },

@@ -3,11 +3,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const User = require("../controller/user/user");
 const OAuth = require("wechat-oauth");
-const APP_ID = 'wx78dfb7976e77c436';
-const APP_SECRET = '1a55760202297f214c23a5dd9514646e';
-const wechatClient = new OAuth(APP_ID, APP_SECRET);
-const redirectUrl = 'http://mpsanqian.free.ngrok.cc';
-// const redirectUrl = 'http://baidu.com'
+if (process.env.NODE_ENV !== 'production') {
+    const APP_ID = 'wx78dfb7976e77c436';
+    const APP_SECRET = '1a55760202297f214c23a5dd9514646e';
+    const wechatClient = new OAuth(APP_ID, APP_SECRET);
+    const redirectUrl = 'http://mpsanqian.free.ngrok.cc';
+}
+else {
+    const APP_ID = 'wx1a679722114b6a84';
+    const APP_SECRET = '41a839d5d19753a8032b86a33c87b8e8';
+    const wechatClient = new OAuth(APP_ID, APP_SECRET);
+    const redirectUrl = 'http://www.ai-union.com';
+}
 const router = express.Router();
 router.route('/')
     .get(function (req, res, next) {

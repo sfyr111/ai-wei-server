@@ -7,13 +7,6 @@
 import app from '../app'
 var debug = require('debug')('express-typescript:server');
 var http = require('http');
-import * as OAuth from 'wechat-oauth'
-const APP_ID = process.env.NODE_ENV !== 'production' ? 'wx78dfb7976e77c436' : 'wx1a679722114b6a84'
-const APP_SECRET = process.env.NODE_ENV !== 'production' ? '1a55760202297f214c23a5dd9514646e' : '41a839d5d19753a8032b86a33c87b8e8'
-const wechatClient = new OAuth(APP_ID, APP_SECRET)
-// const url = process.env.NODE_ENV !== 'production' ? 'http://mpsanqian.free.ngrok.cc' : 'http://www.ai-union.com'
-const url = 'http://www.ai-union.com'
-const clientUrl = wechatClient.getAuthorizeURL(url, '123', 'snsapi_base')
 
 /**
  * Get port from environment and store in Express.
@@ -34,7 +27,6 @@ var server = http.createServer(app);
 
 server.listen(port);
 console.log('listening: ' + port)
-console.log(clientUrl)
 server.on('error', onError);
 server.on('listening', onListening);
 

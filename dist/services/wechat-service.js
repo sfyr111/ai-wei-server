@@ -9,10 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const redis_service_1 = require("./redis-service");
-// const APP_ID = process.env.NODE_ENV !== 'production' ? 'wx78dfb7976e77c436' : 'wx1a679722114b6a84'
-// const APP_SECRET = process.env.NODE_ENV !== 'production' ? '1a55760202297f214c23a5dd9514646e' : '41a839d5d19753a8032b86a33c87b8e8'
-const APP_ID = 'wx78dfb7976e77c436';
-const APP_SECRET = '1a55760202297f214c23a5dd9514646e';
+const APP_ID = process.env.NODE_ENV !== 'production' ? 'wx78dfb7976e77c436' : 'wx1a679722114b6a84';
+const APP_SECRET = process.env.NODE_ENV !== 'production' ? '1a55760202297f214c23a5dd9514646e' : '41a839d5d19753a8032b86a33c87b8e8';
+// const APP_ID = 'wx78dfb7976e77c436'
+// const APP_SECRET = '1a55760202297f214c23a5dd9514646e'
 var WECHAT_TOKEN;
 (function (WECHAT_TOKEN) {
     WECHAT_TOKEN["ACCESS_TOKEN"] = "access_token_by_code:";

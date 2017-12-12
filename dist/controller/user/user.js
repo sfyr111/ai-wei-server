@@ -65,7 +65,7 @@ exports.loginWithWechat = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const { code } = req.body;
         // if (code === 'test') {
-        if (process.env.NODE_ENV !== 'production') {
+        if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
             res.json({
                 code: 0,
                 token: JWT.sign({

@@ -57,7 +57,7 @@ export const getUserByOpenId = async function (req: any, res: any, next: any): P
 export const loginWithWechat = async function (req: any, res: any, next: any): Promise<any> {
   const { code } = req.body
   // if (code === 'test') {
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
     res.json({
       code: 0,
       token: JWT.sign({

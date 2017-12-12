@@ -12,17 +12,18 @@ const courseText_1 = require("../../models/courseText/courseText");
 const DEFAULT_PROJECTION = { __v: 0 };
 exports.addAgreeCount = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield courseText_1.default.findByIdAndUpdate({ _id: req.params.id }, { $addToSet: { agreedUsers: req.params.userId } }, { new: true })
+        const couterText = yield courseText_1.default.findByIdAndUpdate({ _id: req.params.id }, { $addToSet: { agreedUsers: req.params.userId } }, { new: true })
             .catch((e) => {
             console.log(e);
             throw new Error('addReadedCount error');
         });
         res.json({
-            code: 0
+            code: 0,
+            data: couterText
         });
     });
 };
-exports.addReadedCount = function (req, res, next) {
+exports.addReadCount = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         yield courseText_1.default.findByIdAndUpdate({ _id: req.params.id }, { $inc: { readCount: 1 } }, { new: true })
             .catch((e) => {

@@ -10,7 +10,7 @@ router.route('/')
 // 获取单个视频课程
 router.route('/:id')
   .get(CourseText.getOneTextById)
-  .post(CourseText.addReadedCount) // 观看次数
+  .post(CourseText.addReadCount) // 观看次数
 
 router.route('/:id/user/:userId/agree')
   .post(CourseText.addAgreeCount) // 点赞数

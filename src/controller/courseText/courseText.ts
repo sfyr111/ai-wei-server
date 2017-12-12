@@ -3,16 +3,17 @@ import CourseTextModel from '../../models/courseText/courseText'
 const DEFAULT_PROJECTION = { __v: 0 }
 
 export const addAgreeCount = async function (req: any, res: any, next: any): Promise<any> {
-  await CourseTextModel.findByIdAndUpdate({ _id: req.params.id }, { $addToSet: { agreedUsers: req.params.userId } }, { new: true })
+  const couterText = await CourseTextModel.findByIdAndUpdate({ _id: req.params.id }, { $addToSet: { agreedUsers: req.params.userId } }, { new: true })
     .catch((e: any) => {
       console.log(e)
       throw new Error('addReadedCount error')
     })
   res.json({
-    code: 0
+    code: 0,
+    data: couterText
   })
 }
-export const addReadedCount = async function (req: any, res: any, next: any): Promise<any> {
+export const addReadCount = async function (req: any, res: any, next: any): Promise<any> {
   await CourseTextModel.findByIdAndUpdate({ _id: req.params.id }, { $inc: { readCount: 1 }}, { new: true })
     .catch((e: any) => {
       console.log(e)

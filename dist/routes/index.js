@@ -6,7 +6,8 @@ const OAuth = require("wechat-oauth");
 const APP_ID = process.env.NODE_ENV !== 'production' ? 'wx78dfb7976e77c436' : 'wx1a679722114b6a84';
 const APP_SECRET = process.env.NODE_ENV !== 'production' ? '1a55760202297f214c23a5dd9514646e' : '41a839d5d19753a8032b86a33c87b8e8';
 const wechatClient = new OAuth(APP_ID, APP_SECRET);
-const redirectUrl = process.env.NODE_ENV !== 'production' ? 'http://mpsanqian.free.ngrok.cc' : 'http://www.ai-union.com';
+// const redirectUrl = process.env.NODE_ENV !== 'production' ? 'http://mpsanqian.free.ngrok.cc' : 'http://www.ai-union.com'
+const redirectUrl = 'http://www.ai-union.com';
 const router = express.Router();
 router.route('/')
     .get(function (req, res, next) {

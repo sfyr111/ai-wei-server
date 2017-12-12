@@ -16,6 +16,9 @@ var server = http.createServer(app_1.default);
 /**
  * Listen on provided port, on all network interfaces.
  */
+console.log('test', process.env.NODE_ENV === 'test');
+console.log('production', process.env.NODE_ENV === 'production');
+console.log('development', process.env.NODE_ENV === 'development');
 server.listen(port);
 console.log('listening: ' + port);
 server.on('error', onError);

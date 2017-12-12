@@ -9,7 +9,7 @@ router.route('/')
 // 获取单个视频课程
 router.route('/:id')
     .get(CourseVideo.getOneVideoById)
-    .post(CourseVideo.addPlayCount);
+    .post(CourseVideo.addPlayCount); // 播放次数
 // 获取某id专栏下的所有视频课程
 router.route('/column/:columnId')
     .get(CourseVideo.getManyVideoByColumnId);

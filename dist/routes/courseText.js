@@ -8,7 +8,10 @@ router.route('/')
     .get(CourseText.getAllText);
 // 获取单个视频课程
 router.route('/:id')
-    .get(CourseText.getOneTextById);
+    .get(CourseText.getOneTextById)
+    .post(CourseText.addReadedCount); // 观看次数
+router.route('/:id/user/:userId/agree')
+    .post(CourseText.addAgreeCount); // 点赞数
 // 获取某id专栏下的所有视频课程
 router.route('/column/:columnId')
     .get(CourseText.getManyTextByColumnId);

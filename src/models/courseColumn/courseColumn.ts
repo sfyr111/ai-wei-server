@@ -11,9 +11,9 @@ const CourseColumnSchema = new Schema({
   introduction: { type: String }, // 简介，富文本 可编辑字体大小，支持标题、段落、字体大小编辑功能
   subtitle: { type: String }, // 子标题
   imgUrl: { type: String }, // 专栏标题图片 缩略图
+  backgroundColorIsBlack: { type: Boolean, default: true }, // 背景图颜色,true为黑，false为白 /*new data*/
   backgroundUrl: { type: String }, // 专栏详情背景图片 详情背景图
   popular: { type: Boolean }, // 是否热门课程
-  // media: { type: Boolean }, // 是否为媒体课程专栏
   type: { type: String }, // 课程类型，文本: text, 音频: audio, 视频: video
   createTime: { type: Number, default: Date.now().valueOf() },
   updateTime: { type: Number, default: Date.now().valueOf() },

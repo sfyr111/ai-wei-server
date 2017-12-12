@@ -10,6 +10,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const courseText_1 = require("../../models/courseText/courseText");
 const DEFAULT_PROJECTION = { __v: 0 };
+exports.addAgreeCount = function (req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        yield courseText_1.default.findByIdAndUpdate({ _id: req.params.id }, { $addToSet: { agreedUsers: req.params.userId } }, { new: true })
+            .catch((e) => {
+            console.log(e);
+            throw new Error('addReadedCount error');
+        });
+        res.json({
+            code: 0
+        });
+    });
+};
+exports.addReadedCount = function (req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        yield courseText_1.default.findByIdAndUpdate({ _id: req.params.id }, { $inc: { readCount: 1 } }, { new: true })
+            .catch((e) => {
+            console.log(e);
+            throw new Error('addReadedCount error');
+        });
+        res.json({
+            code: 0
+        });
+    });
+};
 exports.getAllText = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const { page = 0, pageSize = 10 } = req.body;

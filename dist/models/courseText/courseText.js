@@ -13,6 +13,7 @@ const CourseTextSchema = new Schema({
     richText: { type: String },
     introduction: { type: String },
     author: { type: String },
+    authorAvatar: { type: String },
     isOriginal: { type: Boolean },
     readCount: { type: Number, default: 0 },
     agreedUsers: { type: Array },

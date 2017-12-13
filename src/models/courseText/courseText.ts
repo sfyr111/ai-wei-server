@@ -14,6 +14,7 @@ const CourseTextSchema = new Schema({
   richText: { type: String }, // 课程相应的富文本
   introduction: { type: String }, // 文本课程简介，普通文本
   author: { type: String },
+  authorAvatar: { type: String }, // 作者头像
   isOriginal: { type: Boolean }, // 是否为原创
   readCount: { type: Number, default: 0 }, // 阅读量
   agreedUsers: { type: Array }, // 阅读量

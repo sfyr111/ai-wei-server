@@ -17,7 +17,8 @@ const CourseTextSchema = new Schema({
     isOriginal: { type: Boolean },
     readCount: { type: Number, default: 0 },
     agreedUsers: { type: Array },
-    audio: { type: Schema.Types.Mixed, default: { title: '', url: '', playTime: -1, fileSize: '0M' } },
+    articleImg: { type: String },
+    audio: { type: Schema.Types.Mixed, default: { title: '', url: '', playTime: -1, fileSize: '0M', finishedUsers: [] } },
     createTime: { type: Number, default: Date.now().valueOf() },
     updateTime: { type: Number, default: Date.now().valueOf() }
 }, { versionKey: false });

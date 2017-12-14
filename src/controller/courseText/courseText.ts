@@ -13,6 +13,19 @@ export const addAgreeCount = async function (req: any, res: any, next: any): Pro
     data: couterText
   })
 }
+
+export const addFinishedUser = async function (req: any, res: any, next: any): Promise<any> {
+  const couterText = await CourseTextModel.findByIdAndUpdate({ _id: req.params.id }, { $addToSet: { "audio.finishedUsers": req.params.userId } }, { new: true })
+    .catch((e: any) => {
+      console.log(e)
+      throw new Error('addFinishedUser error')
+    })
+  res.json({
+    code: 0,
+    data: couterText
+  })
+}
+
 export const addReadCount = async function (req: any, res: any, next: any): Promise<any> {
   await CourseTextModel.findByIdAndUpdate({ _id: req.params.id }, { $inc: { readCount: 1 }}, { new: true })
     .catch((e: any) => {

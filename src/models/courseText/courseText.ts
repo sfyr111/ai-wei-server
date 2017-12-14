@@ -1,5 +1,4 @@
 import * as mongoose from 'mongoose'
-import {isNumber} from "util";
 
 const Schema = mongoose.Schema
 
@@ -18,7 +17,8 @@ const CourseTextSchema = new Schema({
   isOriginal: { type: Boolean }, // 是否为原创
   readCount: { type: Number, default: 0 }, // 阅读量
   agreedUsers: { type: Array }, // 阅读量
-  audio: { type: Schema.Types.Mixed, default: { title: '', url: '', playTime: -1, fileSize: '0M' } }, // 文本课程音频数据
+  articleImg: { type: String }, // 文章图片
+  audio: { type: Schema.Types.Mixed, default: { title: '', url: '', playTime: -1, fileSize: '0M', finishedUsers: [] } }, // 文本课程音频数据
   createTime: { type: Number, default: Date.now().valueOf() },
   updateTime: { type: Number, default: Date.now().valueOf() }
 }, { versionKey: false })

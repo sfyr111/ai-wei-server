@@ -39,7 +39,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(session({
   secret: 'nice_to_meet_you',
-  name: 'aiwei',
+  name: 'wid',
+  resave: false,
+  saveUninitialized: false,
   cookie: {
     maxAge: 60*1000,
     secure: false

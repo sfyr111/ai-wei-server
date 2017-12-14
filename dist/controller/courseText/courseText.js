@@ -23,6 +23,19 @@ exports.addAgreeCount = function (req, res, next) {
         });
     });
 };
+exports.addFinishedUser = function (req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const couterText = yield courseText_1.default.findByIdAndUpdate({ _id: req.params.id }, { $addToSet: { "audio.finishedUsers": req.params.userId } }, { new: true })
+            .catch((e) => {
+            console.log(e);
+            throw new Error('addFinishedUser error');
+        });
+        res.json({
+            code: 0,
+            data: couterText
+        });
+    });
+};
 exports.addReadCount = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         yield courseText_1.default.findByIdAndUpdate({ _id: req.params.id }, { $inc: { readCount: 1 } }, { new: true })

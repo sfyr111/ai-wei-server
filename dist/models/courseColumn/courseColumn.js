@@ -14,6 +14,7 @@ const CourseColumnSchema = new Schema({
     backgroundColorIsBlack: { type: Boolean, default: true },
     backgroundUrl: { type: String },
     popular: { type: Boolean },
+    popularTitle: { type: String },
     type: { type: String },
     createTime: { type: Number, default: Date.now().valueOf() },
     updateTime: { type: Number, default: Date.now().valueOf() },

@@ -76,6 +76,18 @@ exports.loginWithWechat = function (req, res, next) {
         const { code } = req.body;
         // if (code === 'test') {
         if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+            if (req.session.user) {
+                res.json({
+                    code: 0,
+                    token: JWT.sign({
+                        _id: '000000000000000000000000',
+                        iat: Date.now(),
+                        expire: Date.now() + 24 * 60 * 60 * 1000
+                    }, cipher_1.Cipher.JWT_SECRET),
+                    user: req.session.user,
+                    sess: 'sess'
+                });
+            }
             req.session.user = testUser;
             res.json({
                 code: 0,
@@ -95,12 +107,22 @@ exports.loginWithWechat = function (req, res, next) {
             // 存用户
             const user = yield foundOrCreatedUser(userOfWechat);
             const token = JWT.sign({ _id: user._id, iat: Date.now(), expire: Date.now() + 24 * 60 * 60 * 1000 }, cipher_1.Cipher.JWT_SECRET);
-            req.session.user = user;
-            res.json({
-                code: 0,
-                user,
-                token
-            });
+            if (req.session.user) {
+                res.json({
+                    code: 0,
+                    user: req.session.user,
+                    token,
+                    sess: 'sess'
+                });
+            }
+            else {
+                req.session.user = user;
+                res.json({
+                    code: 0,
+                    user,
+                    token
+                });
+            }
         }
     });
 };

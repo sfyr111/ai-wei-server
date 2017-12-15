@@ -73,7 +73,7 @@ export const loginWithWechat = async function (req: any, res: any, next: any): P
       res.json({
         code: 0,
         token: JWT.sign({
-          _id: '000000000000000000000000',
+          _id: req.session.user._id,
           iat: Date.now(),
           expire: Date.now() + 24 * 60 * 60 * 1000
         }, Cipher.JWT_SECRET),
@@ -85,13 +85,22 @@ export const loginWithWechat = async function (req: any, res: any, next: any): P
     res.json({
       code: 0,
       token: JWT.sign({
-        _id: '000000000000000000000000',
+        _id: req.session.user._id,
         iat: Date.now(),
         expire: Date.now() + 24 * 60 * 60 * 1000
       }, Cipher.JWT_SECRET),
       user: testUser
     })
   } else {
+    if (req.session.user) {
+      const token = JWT.sign({ _id: req.session.user._id, iat: Date.now(), expire: Date.now() + 24 * 60 * 60 * 1000 }, Cipher.JWT_SECRET)
+      res.json({
+        code: 0,
+        user: req.session.user,
+        token,
+        sess: 'sess'
+      })
+    }
     const userOfWechat = await WechatService.getUserInfoByCode(code)
       .catch((e: any) => {
         throw new Error('userOfWechat error')
@@ -101,22 +110,13 @@ export const loginWithWechat = async function (req: any, res: any, next: any): P
 
     const token = JWT.sign({ _id: user._id, iat: Date.now(), expire: Date.now() + 24 * 60 * 60 * 1000 }, Cipher.JWT_SECRET)
 
-    if (req.session.user) {
-      res.json({
-        code: 0,
-        user: req.session.user,
-        token,
-        sess: 'sess'
-      })
-    } else {
-      req.session.user = user
+    req.session.user = user
 
-      res.json({
-        code: 0,
-        user,
-        token
-      })
-    }
+    res.json({
+      code: 0,
+      user,
+      token
+    })
   }
 }
 

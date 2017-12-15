@@ -80,7 +80,7 @@ exports.loginWithWechat = function (req, res, next) {
                 res.json({
                     code: 0,
                     token: JWT.sign({
-                        _id: '000000000000000000000000',
+                        _id: req.session.user._id,
                         iat: Date.now(),
                         expire: Date.now() + 24 * 60 * 60 * 1000
                     }, cipher_1.Cipher.JWT_SECRET),
@@ -92,7 +92,7 @@ exports.loginWithWechat = function (req, res, next) {
             res.json({
                 code: 0,
                 token: JWT.sign({
-                    _id: '000000000000000000000000',
+                    _id: req.session.user._id,
                     iat: Date.now(),
                     expire: Date.now() + 24 * 60 * 60 * 1000
                 }, cipher_1.Cipher.JWT_SECRET),
@@ -100,14 +100,8 @@ exports.loginWithWechat = function (req, res, next) {
             });
         }
         else {
-            const userOfWechat = yield WechatService.getUserInfoByCode(code)
-                .catch((e) => {
-                throw new Error('userOfWechat error');
-            });
-            // 存用户
-            const user = yield foundOrCreatedUser(userOfWechat);
-            const token = JWT.sign({ _id: user._id, iat: Date.now(), expire: Date.now() + 24 * 60 * 60 * 1000 }, cipher_1.Cipher.JWT_SECRET);
             if (req.session.user) {
+                const token = JWT.sign({ _id: req.session.user._id, iat: Date.now(), expire: Date.now() + 24 * 60 * 60 * 1000 }, cipher_1.Cipher.JWT_SECRET);
                 res.json({
                     code: 0,
                     user: req.session.user,
@@ -115,14 +109,19 @@ exports.loginWithWechat = function (req, res, next) {
                     sess: 'sess'
                 });
             }
-            else {
-                req.session.user = user;
-                res.json({
-                    code: 0,
-                    user,
-                    token
-                });
-            }
+            const userOfWechat = yield WechatService.getUserInfoByCode(code)
+                .catch((e) => {
+                throw new Error('userOfWechat error');
+            });
+            // 存用户
+            const user = yield foundOrCreatedUser(userOfWechat);
+            const token = JWT.sign({ _id: user._id, iat: Date.now(), expire: Date.now() + 24 * 60 * 60 * 1000 }, cipher_1.Cipher.JWT_SECRET);
+            req.session.user = user;
+            res.json({
+                code: 0,
+                user,
+                token
+            });
         }
     });
 };

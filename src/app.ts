@@ -34,7 +34,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 // app.use(history())
-app.use(cors())
+// app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(session({
@@ -47,7 +47,10 @@ app.use(session({
     secure: false
   }
 }))
-
+app.use('*', function (req, res, next) {
+  console.log(req.session.user)
+  next()
+})
 app.use('/', index)
 app.use('/user', user)
 app.use('/classify', courseClassify)

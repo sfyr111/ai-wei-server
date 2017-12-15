@@ -60,12 +60,23 @@ exports.getUserByOpenId = function (req, res, next) {
         });
     });
 };
+const testUser = {
+    "_id": "000000000000000000000000",
+    "sex": "1",
+    "city": "Nanjing",
+    "openId": "12345678",
+    "name": "测试用户1",
+    "country": "China",
+    "province": "Jiangsu",
+    "avatar": "http://w3schools.bootcss.com/images/colorpicker.gif"
+};
 // a day 24 * 60 * 60 * 1000
 exports.loginWithWechat = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const { code } = req.body;
         // if (code === 'test') {
         if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+            req.session.user = testUser;
             res.json({
                 code: 0,
                 token: JWT.sign({
@@ -73,16 +84,7 @@ exports.loginWithWechat = function (req, res, next) {
                     iat: Date.now(),
                     expire: Date.now() + 24 * 60 * 60 * 1000
                 }, cipher_1.Cipher.JWT_SECRET),
-                user: {
-                    "_id": "000000000000000000000000",
-                    "sex": "1",
-                    "city": "Nanjing",
-                    "openId": "12345678",
-                    "name": "测试用户1",
-                    "country": "China",
-                    "province": "Jiangsu",
-                    "avatar": "http://w3schools.bootcss.com/images/colorpicker.gif"
-                }
+                user: testUser
             });
         }
         else {
@@ -93,6 +95,7 @@ exports.loginWithWechat = function (req, res, next) {
             // 存用户
             const user = yield foundOrCreatedUser(userOfWechat);
             const token = JWT.sign({ _id: user._id, iat: Date.now(), expire: Date.now() + 24 * 60 * 60 * 1000 }, cipher_1.Cipher.JWT_SECRET);
+            req.session.user = user;
             res.json({
                 code: 0,
                 user,

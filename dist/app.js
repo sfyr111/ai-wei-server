@@ -7,7 +7,6 @@ const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const session = require("express-session");
-const cors = require("cors");
 const index_1 = require("./routes/index");
 const user_1 = require("./routes/user");
 const courseClassify_1 = require("./routes/courseClassify");
@@ -29,7 +28,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(history())
-app.use(cors());
+// app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'nice_to_meet_you',
@@ -41,6 +40,10 @@ app.use(session({
         secure: false
     }
 }));
+app.use('*', function (req, res, next) {
+    console.log(req.session.user);
+    next();
+});
 app.use('/', index_1.default);
 app.use('/user', user_1.default);
 app.use('/classify', courseClassify_1.default);

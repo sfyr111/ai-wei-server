@@ -53,11 +53,23 @@ export const getUserByOpenId = async function (req: any, res: any, next: any): P
   })
 }
 
+const testUser = {
+  "_id": "000000000000000000000000",
+  "sex": "1",
+  "city": "Nanjing",
+  "openId": "12345678",
+  "name": "测试用户1",
+  "country": "China",
+  "province": "Jiangsu",
+  "avatar": "http://w3schools.bootcss.com/images/colorpicker.gif"
+}
+
 // a day 24 * 60 * 60 * 1000
 export const loginWithWechat = async function (req: any, res: any, next: any): Promise<any> {
   const { code } = req.body
   // if (code === 'test') {
   if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+    req.session.user = testUser
     res.json({
       code: 0,
       token: JWT.sign({
@@ -65,16 +77,7 @@ export const loginWithWechat = async function (req: any, res: any, next: any): P
         iat: Date.now(),
         expire: Date.now() + 24 * 60 * 60 * 1000
       }, Cipher.JWT_SECRET),
-      user: {
-        "_id": "000000000000000000000000",
-        "sex": "1",
-        "city": "Nanjing",
-        "openId": "12345678",
-        "name": "测试用户1",
-        "country": "China",
-        "province": "Jiangsu",
-        "avatar": "http://w3schools.bootcss.com/images/colorpicker.gif"
-      }
+      user: testUser
     })
   } else {
     const userOfWechat = await WechatService.getUserInfoByCode(code)
@@ -85,6 +88,8 @@ export const loginWithWechat = async function (req: any, res: any, next: any): P
     const user = await foundOrCreatedUser(userOfWechat)
 
     const token = JWT.sign({ _id: user._id, iat: Date.now(), expire: Date.now() + 24 * 60 * 60 * 1000 }, Cipher.JWT_SECRET)
+
+    req.session.user = user
 
     res.json({
       code: 0,

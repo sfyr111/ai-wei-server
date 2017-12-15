@@ -6,7 +6,7 @@ const router = express.Router();
 // text
 router.route('/')
     .get(CourseText.getAllText);
-// 获取单个视频课程
+// 获取单个文本课程
 router.route('/:id')
     .get(CourseText.getOneTextById)
     .post(CourseText.addReadCount); // 观看次数

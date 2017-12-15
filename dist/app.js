@@ -7,6 +7,8 @@ const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const connectRedis = require("connect-redis");
+const redis_service_1 = require("./services/redis-service");
 const index_1 = require("./routes/index");
 const user_1 = require("./routes/user");
 const courseClassify_1 = require("./routes/courseClassify");
@@ -18,6 +20,9 @@ const banner_1 = require("./routes/banner");
 // import * as history from 'connect-history-api-fallback'
 require("./services/mongoose-service");
 var app = express();
+const RedisStore = connectRedis(session);
+// const redisClient = redis.createClient(6379, '127.0.0.1')
+// const redisClient = redis.createClient(7003, '61.147.124.74')
 // view engine setup
 app.set('views', path.join(__dirname, 'public'));
 app.set('view engine', 'ejs');
@@ -31,17 +36,20 @@ app.use(cookieParser());
 // app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-    secret: 'nice_to_meet_you',
+    store: new RedisStore({ client: redis_service_1.default }),
+    // store: new RedisStore({ client: redisClient }),
+    secret: 'aiweixueyuan',
     name: 'wid',
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
         secure: false
     }
 }));
 app.use('*', function (req, res, next) {
-    console.log(req.session.user);
+    // console.log('--------------------')
+    console.log(req.session);
     next();
 });
 app.use('/', index_1.default);

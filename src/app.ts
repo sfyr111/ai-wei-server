@@ -5,6 +5,9 @@ import * as logger from 'morgan'
 import * as cookieParser from 'cookie-parser'
 import * as bodyParser from 'body-parser'
 import * as session from 'express-session'
+import * as redis from 'redis'
+import * as connectRedis from 'connect-redis'
+import iredisclient from './services/redis-service'
 import * as cors from 'cors'
 
 import index from './routes/index'
@@ -22,6 +25,9 @@ import banner from './routes/banner'
 import './services/mongoose-service'
 
 var app = express()
+const RedisStore = connectRedis(session)
+// const redisClient = redis.createClient(6379, '127.0.0.1')
+// const redisClient = redis.createClient(7003, '61.147.124.74')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'public'))
@@ -38,17 +44,20 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(session({
-  secret: 'nice_to_meet_you',
+  store: new RedisStore({ client: iredisclient }),
+  // store: new RedisStore({ client: redisClient }),
+  secret: 'aiweixueyuan',
   name: 'wid',
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 60*1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
     secure: false
   }
 }))
 app.use('*', function (req, res, next) {
-  console.log(req.session.user)
+  // console.log('--------------------')
+  console.log(req.session)
   next()
 })
 app.use('/', index)

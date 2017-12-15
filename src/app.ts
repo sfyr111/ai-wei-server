@@ -44,7 +44,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(session({
-  store: new RedisStore({ client: iredisclient }),
+  store: new RedisStore({ client: iredisclient, logErrors: true }),
   // store: new RedisStore({ client: redisClient }),
   secret: 'aiweixueyuan',
   name: 'wid',
@@ -57,7 +57,7 @@ app.use(session({
 }))
 app.use('*', function (req, res, next) {
   // console.log('--------------------')
-  console.log(req.session)
+  // console.log(req.session)
   next()
 })
 app.use('/', index)

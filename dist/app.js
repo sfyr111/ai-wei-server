@@ -36,7 +36,7 @@ app.use(cookieParser());
 // app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-    store: new RedisStore({ client: redis_service_1.default }),
+    store: new RedisStore({ client: redis_service_1.default, logErrors: true }),
     // store: new RedisStore({ client: redisClient }),
     secret: 'aiweixueyuan',
     name: 'wid',
@@ -49,7 +49,7 @@ app.use(session({
 }));
 app.use('*', function (req, res, next) {
     // console.log('--------------------')
-    console.log(req.session);
+    // console.log(req.session)
     next();
 });
 app.use('/', index_1.default);

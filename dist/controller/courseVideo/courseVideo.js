@@ -58,7 +58,7 @@ exports.getOneVideoById = function (req, res, next) {
 exports.getManyVideoByColumnId = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const { page = 0, pageSize = 10 } = req.body;
-        const flow = courseVideo_1.default.find({ columnId: req.params.columnId });
+        const flow = courseVideo_1.default.find({ columnId: req.params.columnId, isRelease: true });
         flow.select(DEFAULT_PROJECTION);
         flow.skip(page * pageSize);
         flow.limit(pageSize);
@@ -76,7 +76,7 @@ exports.getManyVideoByColumnId = function (req, res, next) {
 exports.getManyVideoByClassifyId = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const { page = 0, pageSize = 10 } = req.body;
-        const flow = courseVideo_1.default.find({ classifyId: req.params.classifyId });
+        const flow = courseVideo_1.default.find({ classifyId: req.params.classifyId, isRelease: true });
         flow.select(DEFAULT_PROJECTION);
         flow.skip(page * pageSize);
         flow.limit(pageSize);

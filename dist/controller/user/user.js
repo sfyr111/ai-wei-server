@@ -127,7 +127,7 @@ exports.loginWithWechat = function (req, res, next) {
 };
 exports.getFavoriteColumns = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const favoriteColumnIds = yield user_1.default.findOne({ openId: req.params.userId }).then((data) => data.favoriteColumnId);
+        const favoriteColumnIds = yield user_1.default.findOne({ openId: req.params.userId, isRelease: true }).then((data) => data.favoriteColumnId);
         const columns = yield _handleFavAndHisColumns(favoriteColumnIds)
             .catch(e => {
             console.log(e);

@@ -19,6 +19,8 @@ const CourseTextSchema = new Schema({
   agreedUsers: { type: Array }, // 阅读量
   articleImg: { type: String }, // 文章图片
   audio: { type: Schema.Types.Mixed, default: { title: '', url: '', playTime: -1, fileSize: '0M', finishedUsers: [] } }, // 文本课程音频数据
+  isRelease: { type: Boolean }, // 是否发布
+  releaseTime: { type: Number }, // 发布时间
   createTime: { type: Number, default: Date.now().valueOf() },
   updateTime: { type: Number, default: Date.now().valueOf() }
 }, { versionKey: false })

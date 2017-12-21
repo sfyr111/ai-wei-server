@@ -15,6 +15,8 @@ const CourseVideoSchema = new Schema({
   subtitle: { type: String }, // 课程子标题
   imgUrl: { type: String }, // 每个视频的配图
   playCount: { type: Number, default: 0 }, // 播放次数
+  isRelease: { type: Boolean }, // 是否发布
+  releaseTime: { type: Number }, // 发布时间
   createTime: { type: Number, default: Date.now().valueOf() },
   updateTime: { type: Number, default: Date.now().valueOf() }
 }, { versionKey: false })

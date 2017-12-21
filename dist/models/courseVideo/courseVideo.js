@@ -15,6 +15,8 @@ const CourseVideoSchema = new Schema({
     subtitle: { type: String },
     imgUrl: { type: String },
     playCount: { type: Number, default: 0 },
+    isRelease: { type: Boolean },
+    releaseTime: { type: Number },
     createTime: { type: Number, default: Date.now().valueOf() },
     updateTime: { type: Number, default: Date.now().valueOf() }
 }, { versionKey: false });

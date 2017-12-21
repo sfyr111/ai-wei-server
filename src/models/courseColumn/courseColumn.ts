@@ -15,6 +15,8 @@ const CourseColumnSchema = new Schema({
   backgroundUrl: { type: String }, // 专栏详情背景图片 详情背景图
   popular: { type: Boolean }, // 是否热门课程
   popularTitle: { type: String }, // 热门课程标题
+  isRelease: { type: Boolean }, // 是否发布
+  releaseTime: { type: Number }, // 发布时间
   type: { type: String }, // 课程类型，文本: text, 音频: audio, 视频: video
   createTime: { type: Number, default: Date.now().valueOf() },
   updateTime: { type: Number, default: Date.now().valueOf() },

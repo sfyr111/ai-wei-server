@@ -72,7 +72,7 @@ export const getOneTextById = async function (req: any, res: any, next: any): Pr
 
 export const getManyTextByColumnId = async function (req: any, res: any, next: any): Promise<any> {
   const { page = 0, pageSize = 10 } = req.body
-  const flow = CourseTextModel.find({ columnId: req.params.columnId })
+  const flow = CourseTextModel.find({ columnId: req.params.columnId, isRelease: true })
   flow.select(DEFAULT_PROJECTION)
   flow.skip(page * pageSize)
   flow.limit(pageSize)
@@ -90,7 +90,7 @@ export const getManyTextByColumnId = async function (req: any, res: any, next: a
 
 export const getManyTextByClassifyId = async function (req: any, res: any, next: any): Promise<any> {
   const { page = 0, pageSize = 10 } = req.body
-  const flow = CourseTextModel.find({ classifyId: req.params.classifyId })
+  const flow = CourseTextModel.find({ classifyId: req.params.classifyId, isRelease: true })
   flow.select(DEFAULT_PROJECTION)
   flow.skip(page * pageSize)
   flow.limit(pageSize)

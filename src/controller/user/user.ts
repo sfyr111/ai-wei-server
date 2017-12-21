@@ -121,7 +121,7 @@ export const loginWithWechat = async function (req: any, res: any, next: any): P
 }
 
 export const getFavoriteColumns = async function (req: any, res: any, next: any): Promise<any> {
-  const favoriteColumnIds: string[] = await UserModel.findOne({ openId: req.params.userId }).then((data: any): string[] => data.favoriteColumnId)
+  const favoriteColumnIds: string[] = await UserModel.findOne({ openId: req.params.userId, isRelease: true }).then((data: any): string[] => data.favoriteColumnId)
 
   const columns: object[] = await _handleFavAndHisColumns(favoriteColumnIds)
     .catch(e => {

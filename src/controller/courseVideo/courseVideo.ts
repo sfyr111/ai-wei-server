@@ -48,7 +48,7 @@ export const getOneVideoById = async function (req: any, res: any, next: any): P
 
 export const getManyVideoByColumnId = async function (req: any, res: any, next: any): Promise<any> {
   const { page = 0, pageSize = 10 } = req.body
-  const flow = CourseVideoModel.find({ columnId: req.params.columnId })
+  const flow = CourseVideoModel.find({ columnId: req.params.columnId, isRelease: true })
   flow.select(DEFAULT_PROJECTION)
   flow.skip(page * pageSize)
   flow.limit(pageSize)
@@ -66,7 +66,7 @@ export const getManyVideoByColumnId = async function (req: any, res: any, next: 
 
 export const getManyVideoByClassifyId = async function (req: any, res: any, next: any): Promise<any> {
   const { page = 0, pageSize = 10 } = req.body
-  const flow = CourseVideoModel.find({ classifyId: req.params.classifyId })
+  const flow = CourseVideoModel.find({ classifyId: req.params.classifyId, isRelease: true })
   flow.select(DEFAULT_PROJECTION)
   flow.skip(page * pageSize)
   flow.limit(pageSize)

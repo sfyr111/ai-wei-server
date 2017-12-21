@@ -47,6 +47,7 @@ exports.getManyCloumnByClassifyId = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const flow = courseColumn_1.default.find({ classifyId: req.params.classifyId, isRelease: true });
         flow.select(DEFAULT_PROJECTION);
+        flow.sort({ createTime: -1 });
         const column = yield flow
             .catch((e) => {
             console.log(e);
@@ -62,6 +63,7 @@ exports.getPopularCloumn = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const flow = courseColumn_1.default.find({ popular: true, isRelease: true });
         flow.select(DEFAULT_PROJECTION);
+        flow.sort({ createTime: -1 });
         const column = yield flow
             .catch((e) => {
             console.log(e);

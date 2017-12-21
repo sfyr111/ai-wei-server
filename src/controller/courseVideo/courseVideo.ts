@@ -52,6 +52,7 @@ export const getManyVideoByColumnId = async function (req: any, res: any, next: 
   flow.select(DEFAULT_PROJECTION)
   flow.skip(page * pageSize)
   flow.limit(pageSize)
+  flow.sort({ createTime: -1 })
 
   const video = await flow
     .catch((e: any): void => {
@@ -70,6 +71,7 @@ export const getManyVideoByClassifyId = async function (req: any, res: any, next
   flow.select(DEFAULT_PROJECTION)
   flow.skip(page * pageSize)
   flow.limit(pageSize)
+  flow.sort({ createTime: -1 })
 
   const video = await flow
     .catch((e: any): void => {

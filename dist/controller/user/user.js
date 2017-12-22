@@ -127,7 +127,7 @@ exports.loginWithWechat = function (req, res, next) {
 };
 exports.getFavoriteColumns = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const favoriteColumnIds = yield user_1.default.findOne({ openId: req.params.userId, isRelease: true }).then((data) => data.favoriteColumnId);
+        const favoriteColumnIds = yield user_1.default.findOne({ openId: req.params.userId }).then((data) => data.favoriteColumnId);
         const columns = yield _handleFavAndHisColumns(favoriteColumnIds)
             .catch(e => {
             console.log(e);
@@ -254,7 +254,7 @@ function _filterFavoriteColumnIdsByColumns(ids) {
 function _handleFavAndHisColumns(columnIds) {
     return __awaiter(this, void 0, void 0, function* () {
         const ids = yield _filterFavoriteColumnIdsByColumns(columnIds);
-        return yield courseColumn_1.default.find({ '_id': { $in: ids } })
+        return yield courseColumn_1.default.find({ '_id': { $in: ids }, isRelease: true })
             .then((columns) => {
             return _sortColumnByIdsOrder(ids, columns).reverse();
         });

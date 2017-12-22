@@ -9,8 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const redis_service_1 = require("./redis-service");
-const APP_ID = process.env.NODE_ENV !== 'production' ? 'wx78dfb7976e77c436' : 'wx1a679722114b6a84';
-const APP_SECRET = process.env.NODE_ENV !== 'production' ? '1a55760202297f214c23a5dd9514646e' : '41a839d5d19753a8032b86a33c87b8e8';
+const wechat_1 = require("../config/wechat");
+const WechatAPI = require("co-wechat-api");
+const sha1 = require("sha1");
+// const APP_ID = process.env.NODE_ENV !== 'production' ? 'wx78dfb7976e77c436' : 'wx1a679722114b6a84'
+// const APP_SECRET = process.env.NODE_ENV !== 'production' ? '1a55760202297f214c23a5dd9514646e' : '41a839d5d19753a8032b86a33c87b8e8'
 // const APP_ID = 'wx78dfb7976e77c436'
 // const APP_SECRET = '1a55760202297f214c23a5dd9514646e'
 var WECHAT_TOKEN;
@@ -19,8 +22,9 @@ var WECHAT_TOKEN;
     WECHAT_TOKEN["REFRESH_TOKEN"] = "refresh_token_by_code:";
     WECHAT_TOKEN["TOKEN_OBJECT"] = "token_object_by_code:";
 })(WECHAT_TOKEN || (WECHAT_TOKEN = {}));
+const wechatApi = new WechatAPI(wechat_1.APP_ID, wechat_1.APP_SECRET);
 const OAuth = require('co-wechat-oauth');
-const wechatClient = new OAuth(APP_ID, APP_SECRET);
+const wechatClient = new OAuth(wechat_1.APP_ID, wechat_1.APP_SECRET);
 exports.getTokenObjByCode = function (code) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!code)
@@ -46,6 +50,16 @@ exports.getUserInfoByCode = function (code) {
             console.log(e);
         });
         return user;
+    });
+};
+exports.wechatDeploy = function (data) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const { signature, nonce, timestamp, echostr } = data;
+        const str = [wechat_1.token, timestamp, nonce].sort().join('');
+        const shaStr = sha1(str);
+        console.log(shaStr);
+        console.log(data);
+        // console.log(wechatApi)
     });
 };
 function getTokenObjFromCache(code) {

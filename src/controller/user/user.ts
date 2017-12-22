@@ -121,7 +121,7 @@ export const loginWithWechat = async function (req: any, res: any, next: any): P
 }
 
 export const getFavoriteColumns = async function (req: any, res: any, next: any): Promise<any> {
-  const favoriteColumnIds: string[] = await UserModel.findOne({ openId: req.params.userId, isRelease: true }).then((data: any): string[] => data.favoriteColumnId)
+  const favoriteColumnIds: string[] = await UserModel.findOne({ openId: req.params.userId }).then((data: any): string[] => data.favoriteColumnId)
 
   const columns: object[] = await _handleFavAndHisColumns(favoriteColumnIds)
     .catch(e => {
@@ -255,7 +255,7 @@ async function _filterFavoriteColumnIdsByColumns(ids: string[]): Promise<string[
 
 async function _handleFavAndHisColumns (columnIds: string[]): Promise<object[]> {
   const ids: string[] = await _filterFavoriteColumnIdsByColumns(columnIds)
-  return await CourseColumn.find({ '_id': { $in: ids } })
+  return await CourseColumn.find({ '_id': { $in: ids }, isRelease: true })
     .then((columns: object[]): Array<object>  => {
       return _sortColumnByIdsOrder(ids, <object[]>columns).reverse()
     })

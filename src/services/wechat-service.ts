@@ -1,8 +1,11 @@
 import redis from './redis-service'
 import { WechatTokenObj } from '../type'
+import { APP_ID, APP_SECRET, token } from '../config/wechat'
+import * as WechatAPI from 'co-wechat-api'
+import * as sha1 from 'sha1'
 
-const APP_ID = process.env.NODE_ENV !== 'production' ? 'wx78dfb7976e77c436' : 'wx1a679722114b6a84'
-const APP_SECRET = process.env.NODE_ENV !== 'production' ? '1a55760202297f214c23a5dd9514646e' : '41a839d5d19753a8032b86a33c87b8e8'
+// const APP_ID = process.env.NODE_ENV !== 'production' ? 'wx78dfb7976e77c436' : 'wx1a679722114b6a84'
+// const APP_SECRET = process.env.NODE_ENV !== 'production' ? '1a55760202297f214c23a5dd9514646e' : '41a839d5d19753a8032b86a33c87b8e8'
 
 // const APP_ID = 'wx78dfb7976e77c436'
 // const APP_SECRET = '1a55760202297f214c23a5dd9514646e'
@@ -13,6 +16,7 @@ enum WECHAT_TOKEN {
   TOKEN_OBJECT = 'token_object_by_code:',
 }
 
+const wechatApi = new WechatAPI(APP_ID, APP_SECRET)
 const OAuth = require('co-wechat-oauth')
 const wechatClient = new OAuth(APP_ID, APP_SECRET)
 
@@ -42,6 +46,15 @@ export const getUserInfoByCode = async function (code: string): Promise<object> 
       console.log(e)
     })
   return user
+}
+
+export const wechatDeploy = async function (data: object): Promise<any> {
+  const { signature, nonce, timestamp, echostr } = data
+  const str = [token, timestamp, nonce].sort().join('')
+  const shaStr = sha1(str)
+  console.log(shaStr)
+  console.log(data)
+  // console.log(wechatApi)
 }
 
 async function getTokenObjFromCache (code: string): Promise<null | WechatTokenObj> {

@@ -1,10 +1,12 @@
 import * as express from 'express'
 import * as User from '../controller/user/user'
 import * as OAuth from 'wechat-oauth'
+import { wechatDeploy } from '../services/wechat-service'
 
+import { APP_ID, APP_SECRET } from '../config/wechat'
 // 开发及生产环境
-const APP_ID = process.env.NODE_ENV !== 'production' ? 'wx78dfb7976e77c436' : 'wx1a679722114b6a84'
-const APP_SECRET = process.env.NODE_ENV !== 'production' ? '1a55760202297f214c23a5dd9514646e' : '41a839d5d19753a8032b86a33c87b8e8'
+// const APP_ID = process.env.NODE_ENV !== 'production' ? 'wx78dfb7976e77c436' : 'wx1a679722114b6a84'
+// const APP_SECRET = process.env.NODE_ENV !== 'production' ? '1a55760202297f214c23a5dd9514646e' : '41a839d5d19753a8032b86a33c87b8e8'
 const redirectUrl = (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') ? 'http://mpsanqian.free.ngrok.cc' : 'http://www.ai-union.com'
 
 
@@ -21,6 +23,11 @@ router.route('/')
   .get(function (req: any, res: any, next: any): void {
     // res.render('index', { title: 'Express' })
     res.render('index')
+  })
+
+router.route('/wechat')
+  .get(function (req: any, res: any, next: any): void {
+    wechatDeploy(req.query)
   })
 
 router.route('/wechat-redirect')

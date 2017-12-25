@@ -58,7 +58,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es6",
+    "target": "es3",
     "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": false,

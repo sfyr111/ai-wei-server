@@ -1,8 +1,8 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const express = require("express");
-const CourseText = require("../controller/courseText/courseText");
-const router = express.Router();
+exports.__esModule = true;
+var express = require("express");
+var CourseText = require("../controller/courseText/courseText");
+var router = express.Router();
 // text
 router.route('/')
     .get(CourseText.getAllText);
@@ -21,4 +21,4 @@ router.route('/column/:columnId')
 // 获取某id分类下的所有视频课程
 router.route('/classify/:classifyId')
     .get(CourseText.getManyTextByClassifyId);
-exports.default = router;
+exports["default"] = router;

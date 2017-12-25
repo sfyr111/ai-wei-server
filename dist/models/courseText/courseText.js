@@ -1,9 +1,9 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+exports.__esModule = true;
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 // 文本课程
-const CourseTextSchema = new Schema({
+var CourseTextSchema = new Schema({
     name: { type: String, required: true },
     creator: { type: String, required: true },
     columnId: { type: String, required: true, ref: 'courseColumn' },
@@ -15,16 +15,16 @@ const CourseTextSchema = new Schema({
     author: { type: String },
     authorAvatar: { type: String },
     isOriginal: { type: Boolean },
-    readCount: { type: Number, default: 0 },
+    readCount: { type: Number, "default": 0 },
     agreedUsers: { type: Array },
     articleImg: { type: String },
-    audio: { type: Schema.Types.Mixed, default: { title: '', url: '', playTime: -1, fileSize: '0M', finishedUsers: [] } },
+    audio: { type: Schema.Types.Mixed, "default": { title: '', url: '', playTime: -1, fileSize: '0M', finishedUsers: [] } },
     isRelease: { type: Boolean },
     releaseTime: { type: Number },
-    createTime: { type: Number, default: Date.now().valueOf() },
-    updateTime: { type: Number, default: Date.now().valueOf() }
+    createTime: { type: Number, "default": Date.now().valueOf() },
+    updateTime: { type: Number, "default": Date.now().valueOf() }
 }, { versionKey: false });
 CourseTextSchema.index({ name: 1 });
 // const CourseTextModel = process.env.NODE_ENV !== 'production' ? mongoose.model('courseTextTest', CourseTextSchema) : mongoose.model('courseText', CourseTextSchema)
-const CourseTextModel = mongoose.model('courseText', CourseTextSchema);
-exports.default = CourseTextModel;
+var CourseTextModel = mongoose.model('courseText', CourseTextSchema);
+exports["default"] = CourseTextModel;

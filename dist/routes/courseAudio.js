@@ -1,8 +1,8 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const express = require("express");
-const CourseAudio = require("../controller/courseAudio/courseAudio");
-const router = express.Router();
+exports.__esModule = true;
+var express = require("express");
+var CourseAudio = require("../controller/courseAudio/courseAudio");
+var router = express.Router();
 // 获取所有专栏，不区分类别
 router.route('/')
     .get(CourseAudio.getAllAudio);
@@ -15,4 +15,4 @@ router.route('/column/:columnId')
 // 获取某id分类下的所有音频课程
 router.route('/classify/:classifyId')
     .get(CourseAudio.getManyAudioByClassifyId);
-exports.default = router;
+exports["default"] = router;

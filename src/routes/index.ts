@@ -1,7 +1,7 @@
 import * as express from 'express'
 import * as User from '../controller/user/user'
 import * as OAuth from 'wechat-oauth'
-import { wechatDeploy } from '../services/wechat-service'
+import { wechatDeploy, getAccessToken, getTicket, getSignature, getJssdkConfig } from '../services/wechat-service'
 
 import { APP_ID, APP_SECRET } from '../config/wechat'
 // 开发及生产环境
@@ -27,7 +27,43 @@ router.route('/')
 
 router.route('/wechat')
   .get(function (req: any, res: any, next: any): void {
-    wechatDeploy(req.query)
+    const result = wechatDeploy(req.query)
+    res.send(result)
+  })
+
+router.route('/wechat/accesstoken')
+  .post(async function (req: any, res: any, next: any) {
+    const token = await getAccessToken()
+    res.send(token)
+  })
+
+router.route('/wechat/ticket')
+  .post(async function (req: any, res: any, next: any) {
+    const { token } = req.body
+    const ticket = await getTicket(token)
+    res.send(ticket)
+  })
+
+router.route('/wechat/signature')
+  .get(async function (req: any, res: any, next: any) {
+    const { url } = req.query
+    const sign = await getSignature(url)
+    res.json({
+      sign,
+      code: 0
+    })
+  })
+
+router.route('/wechat/jssdk')
+  .post(async function (req: any, res: any, next: any) {
+    const { url } = req.body
+    console.log(url)
+    const config = await getJssdkConfig(url)
+    console.log(config)
+    res.json({
+      config,
+      code: 0
+    })
   })
 
 router.route('/wechat-redirect')

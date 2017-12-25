@@ -1,18 +1,18 @@
 #!/usr/bin/env node
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const app_1 = require("../app");
+exports.__esModule = true;
+var app_1 = require("../app");
 var debug = require('debug')('express-typescript:server');
 var http = require('http');
 /**
  * Get port from environment and store in Express.
  */
 var port = normalizePort(process.env.PORT || '3000');
-app_1.default.set('port', port);
+app_1["default"].set('port', port);
 /**
  * Create HTTP server.
  */
-var server = http.createServer(app_1.default);
+var server = http.createServer(app_1["default"]);
 /**
  * Listen on provided port, on all network interfaces.
  */

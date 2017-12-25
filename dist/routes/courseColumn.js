@@ -1,8 +1,8 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const express = require("express");
-const CourseColumn = require("../controller/courseColumn/courseColumn");
-const router = express.Router();
+exports.__esModule = true;
+var express = require("express");
+var CourseColumn = require("../controller/courseColumn/courseColumn");
+var router = express.Router();
 // 获取所有专栏，不区分类别
 router.route('/')
     .get(CourseColumn.getAllCloumn);
@@ -15,4 +15,4 @@ router.route('/classify/:classifyId')
 // 获取单个专栏信息
 router.route('/:id')
     .get(CourseColumn.getOneCloumnById);
-exports.default = router;
+exports["default"] = router;

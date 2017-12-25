@@ -1,14 +1,18 @@
 import redis from './redis-service'
 import { WechatTokenObj } from '../type'
-import { APP_ID, APP_SECRET, token } from '../config/wechat'
+import { APP_ID, APP_SECRET, WECHAT_VERIFICATION_TOKEN, jsApiList } from '../config/wechat'
 import * as WechatAPI from 'co-wechat-api'
 import * as sha1 from 'sha1'
+import axios from 'axios'
 
 // const APP_ID = process.env.NODE_ENV !== 'production' ? 'wx78dfb7976e77c436' : 'wx1a679722114b6a84'
 // const APP_SECRET = process.env.NODE_ENV !== 'production' ? '1a55760202297f214c23a5dd9514646e' : '41a839d5d19753a8032b86a33c87b8e8'
 
 // const APP_ID = 'wx78dfb7976e77c436'
 // const APP_SECRET = '1a55760202297f214c23a5dd9514646e'
+
+const ACCESS_TOKEN = 'access_token_by_aiwei'
+const JS_TICKET = 'js_ticket_by_token'
 
 enum WECHAT_TOKEN {
   ACCESS_TOKEN = 'access_token_by_code:',
@@ -48,13 +52,58 @@ export const getUserInfoByCode = async function (code: string): Promise<object> 
   return user
 }
 
-export const wechatDeploy = async function (data: object): Promise<any> {
+export const wechatDeploy = function (data: object): any {
   const { signature, nonce, timestamp, echostr } = data
-  const str = [token, timestamp, nonce].sort().join('')
+  const str = [WECHAT_VERIFICATION_TOKEN, timestamp, nonce].sort().join('')
   const shaStr = sha1(str)
-  console.log(shaStr)
-  console.log(data)
-  // console.log(wechatApi)
+  if (shaStr === signature) return echostr
+  else return 'failed'
+}
+
+// 获取服务器accese_token
+export const getAccessToken = async function (): Promise<string> {
+  const tokenObj = await axios.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${APP_ID}&secret=${APP_SECRET}
+`).then(data => data.data)
+  await redis.set(ACCESS_TOKEN, tokenObj.access_token)
+  await redis.expire(ACCESS_TOKEN, 7000)
+  const token = await redis.get(ACCESS_TOKEN)
+  return token
+}
+
+// 获取js_ticket
+export const getTicket = async function (token?: string): Promise<string> {
+  const ticket = await redis.get(JS_TICKET)
+  if (!token) token = await getAccessToken()
+  if (!ticket) {
+    const ticketObj = await axios.get(`https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=${token}&type=jsapi
+`).then(data => data.data)
+    await redis.set(JS_TICKET, ticketObj.ticket)
+    await redis.expire(JS_TICKET, 7000)
+    const ticket = await redis.get(JS_TICKET)
+    return ticket
+  } else return ticket
+}
+
+export const getSignature = async function (url: string) {
+  if (!url) throw 'url is not found'
+
+  url = decodeURIComponent(url)
+
+  const ticket = await getTicket()
+  let params = sign(ticket, url)
+  params.appId = APP_ID
+
+  return params
+}
+
+export const getJssdkConfig = async function (url: string): Promise<object> {
+  const params = {
+    url,
+    jsApiList,
+    debug: false,
+  }
+  const config = await wechatApi.getJsConfig(params)
+  return config
 }
 
 async function getTokenObjFromCache (code: string): Promise<null | WechatTokenObj> {
@@ -130,4 +179,55 @@ async function saveRefreshToken (code: string, tokenObj: WechatTokenObj): Promis
     .catch((e: any) => {
       throw new Error(`redis expire refreshToken error ${e.message}`)
     })
+}
+
+function createNonce () {
+  return Math.random().toString(36).substr(2, 15)
+}
+
+function createTimestamp () {
+  return (Date.now() / 1000) >> 0
+}
+
+function raw (args: object) {
+  let keys = Object.keys(args)
+  let newArgs = {}
+  let str = ''
+
+  keys = keys.sort()
+  keys.forEach((key) => {
+    newArgs[key.toLowerCase()] = args[key]
+  })
+
+  for (let k in newArgs) {
+    str += '&' + k + '=' + newArgs[k]
+  }
+
+  return str.substr(1)
+}
+
+function signIt (noncestr: string, ticket: string, timestamp: string, url: string) {
+  const ret = {
+    url,
+    timestamp,
+    nonceStr: noncestr,
+    jsapi_ticket: ticket
+  }
+
+  const string = raw(ret)
+  const sha = sha1(string)
+
+  return sha
+}
+
+function sign (ticket: string, url: string) {
+  const noncestr = createNonce()
+  const timestamp = createTimestamp()
+  const signature = signIt(noncestr, ticket, timestamp, url)
+
+  return {
+    noncestr,
+    timestamp,
+    signature
+  }
 }

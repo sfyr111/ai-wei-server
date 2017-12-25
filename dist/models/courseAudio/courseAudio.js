@@ -1,9 +1,9 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+exports.__esModule = true;
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 // 音频课程
-const CourseAudioSchema = new Schema({
+var CourseAudioSchema = new Schema({
     name: { type: String, required: true },
     creator: { type: String, required: true },
     columnId: { type: String, required: true, ref: 'courseColumn' },
@@ -12,10 +12,10 @@ const CourseAudioSchema = new Schema({
     classifyName: { type: String },
     duration: { type: Number },
     audioUrl: { type: String },
-    createTime: { type: Number, default: Date.now().valueOf() },
-    updateTime: { type: Number, default: Date.now().valueOf() }
+    createTime: { type: Number, "default": Date.now().valueOf() },
+    updateTime: { type: Number, "default": Date.now().valueOf() }
 }, { versionKey: false });
 CourseAudioSchema.index({ name: 1 });
 // const CourseAudioModel = process.env.NODE_ENV !== 'production' ? mongoose.model('courseAudioTest', CourseAudioSchema) : mongoose.model('courseAudio', CourseAudioSchema)
-const CourseAudioModel = mongoose.model('courseAudio', CourseAudioSchema);
-exports.default = CourseAudioModel;
+var CourseAudioModel = mongoose.model('courseAudio', CourseAudioSchema);
+exports["default"] = CourseAudioModel;

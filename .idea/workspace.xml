@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5d198380-7901-4678-bc06-8902f1ffe2cf" name="Default" comment="点赞 返回数据">
+    <list default="true" id="5d198380-7901-4678-bc06-8902f1ffe2cf" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -351,7 +351,7 @@
       <workItem from="1513915034452" duration="16519000" />
       <workItem from="1514010862150" duration="5265000" />
       <workItem from="1514062025404" duration="233000" />
-      <workItem from="1514171826851" duration="16255000" />
+      <workItem from="1514171826851" duration="16290000" />
     </task>
     <task id="LOCAL-00001" summary="修改用户索引id">
       <created>1510732118107</created>
@@ -654,11 +654,18 @@
       <option name="project" value="LOCAL" />
       <updated>1514203737052</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="点赞 返回数据">
+      <created>1514203771753</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1514203771753</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="375476000" />
+    <option name="totallyTimeSpent" value="375511000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1098" height="952" extended-state="0" />
@@ -706,7 +713,6 @@
     <MESSAGE value="pro env" />
     <MESSAGE value="test env fix" />
     <MESSAGE value="增加文本课程数据结构&#10;增加专栏课程数据结构&#10;增加文本阅读量、点赞逻辑" />
-    <MESSAGE value="点赞 返回数据" />
     <MESSAGE value="增加展示数据" />
     <MESSAGE value="点赞 返回数据1.0" />
     <MESSAGE value="添加作者头像model" />
@@ -725,7 +731,8 @@
     <MESSAGE value="fix time" />
     <MESSAGE value="fix fav" />
     <MESSAGE value="开通微信jssdk 权限" />
-    <option name="LAST_COMMIT_MESSAGE" value="开通微信jssdk 权限" />
+    <MESSAGE value="点赞 返回数据" />
+    <option name="LAST_COMMIT_MESSAGE" value="点赞 返回数据" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

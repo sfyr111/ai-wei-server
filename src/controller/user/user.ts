@@ -68,7 +68,8 @@ const testUser = {
 export const loginWithWechat = async function (req: any, res: any, next: any): Promise<any> {
   const { code } = req.body
   // if (code === 'test') {
-  if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+  // if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+  if (process.env.NODE_ENV) { // Change your m's needs
     if (req.session.user) {
       res.json({
         code: 0,

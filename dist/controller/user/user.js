@@ -129,7 +129,7 @@ exports.loginWithWechat = function (req, res, next) {
             switch (_a.label) {
                 case 0:
                     code = req.body.code;
-                    if (!(process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test')) return [3 /*break*/, 1];
+                    if (!process.env.NODE_ENV) return [3 /*break*/, 1];
                     if (req.session.user) {
                         res.json({
                             code: 0,

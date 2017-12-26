@@ -1,22 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5d198380-7901-4678-bc06-8902f1ffe2cf" name="Default" comment="fix minxi">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/public/static/js/column-text.518d57f1e088958098e5.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/public/static/js/column.f8846d226de0833384ff.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/public/static/js/hot-course.16dd1753ca039ff645c5.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/public/static/js/index.026849a0f0ba4b9b7f99.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/public/static/js/manifest.a57726c817ec3d223664.js" afterPath="" />
+    <list default="true" id="5d198380-7901-4678-bc06-8902f1ffe2cf" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/public/classify.html" afterPath="$PROJECT_DIR$/dist/public/classify.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/public/column-text.html" afterPath="$PROJECT_DIR$/dist/public/column-text.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/public/column-video.html" afterPath="$PROJECT_DIR$/dist/public/column-video.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/public/column.html" afterPath="$PROJECT_DIR$/dist/public/column.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/public/favorite.html" afterPath="$PROJECT_DIR$/dist/public/favorite.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/public/history.html" afterPath="$PROJECT_DIR$/dist/public/history.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/public/hot-course.html" afterPath="$PROJECT_DIR$/dist/public/hot-course.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/public/index.html" afterPath="$PROJECT_DIR$/dist/public/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/public/user.html" afterPath="$PROJECT_DIR$/dist/public/user.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -36,8 +22,8 @@
       <file leaf-file-name="wechat-service.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/services/wechat-service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="104" column="52" lean-forward="true" selection-start-line="104" selection-start-column="52" selection-end-line="104" selection-end-column="52" />
+            <state relative-caret-position="359">
+              <caret line="97" column="0" lean-forward="true" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -415,14 +401,7 @@
       <workItem from="1514257910345" duration="5331000" />
       <workItem from="1514276322038" duration="27000" />
       <workItem from="1514276938959" duration="7947000" />
-      <workItem from="1514293986048" duration="1002000" />
-    </task>
-    <task id="LOCAL-00001" summary="修改用户索引id">
-      <created>1510732118107</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1510732118107</updated>
+      <workItem from="1514293986048" duration="1118000" />
     </task>
     <task id="LOCAL-00002" summary="增加banner">
       <created>1510813778997</created>
@@ -760,11 +739,18 @@
       <option name="project" value="LOCAL" />
       <updated>1514294231204</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="fix mixins">
+      <created>1514295300657</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1514295300657</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="390455000" />
+    <option name="totallyTimeSpent" value="390571000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="952" extended-state="0" />
@@ -807,7 +793,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="增加文本课程数据结构&#10;增加专栏课程数据结构&#10;增加文本阅读量、点赞逻辑" />
     <MESSAGE value="增加展示数据" />
     <MESSAGE value="点赞 返回数据1.0" />
     <MESSAGE value="添加作者头像model" />
@@ -832,7 +817,8 @@
     <MESSAGE value="fix wx.ready" />
     <MESSAGE value="fix restcss" />
     <MESSAGE value="add share" />
-    <option name="LAST_COMMIT_MESSAGE" value="add share" />
+    <MESSAGE value="fix mixins" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix mixins" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1106,8 +1092,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/services/wechat-service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="104" column="52" lean-forward="true" selection-start-line="104" selection-start-column="52" selection-end-line="104" selection-end-column="52" />
+        <state relative-caret-position="359">
+          <caret line="97" column="0" lean-forward="true" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
           <folding />
         </state>
       </provider>

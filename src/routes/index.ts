@@ -57,9 +57,7 @@ router.route('/wechat/signature')
 router.route('/wechat/jssdk')
   .post(async function (req: any, res: any, next: any) {
     const { url } = req.body
-    console.log(url)
     const config = await getJssdkConfig(url)
-    console.log(config)
     res.json({
       config,
       code: 0

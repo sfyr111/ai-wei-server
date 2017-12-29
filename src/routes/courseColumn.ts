@@ -19,4 +19,7 @@ router.route('/classify/:classifyId')
 router.route('/:id')
   .get(CourseColumn.getOneCloumnById)
 
+router.route('/:id/share')
+  .post(CourseColumn.addShareCount) // 分享数
+
 export default router

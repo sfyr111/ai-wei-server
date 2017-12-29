@@ -37,6 +37,17 @@ export const addReadCount = async function (req: any, res: any, next: any): Prom
   })
 }
 
+export const addShareCount = async function (req: any, res: any, next: any): Promise<any> {
+  await CourseTextModel.findByIdAndUpdate({ _id: req.params.id }, { $inc: { shareCount: 1 }}, { new: true })
+    .catch((e: any) => {
+      console.log(e)
+      throw new Error('addShareCount error')
+    })
+  res.json({
+    code: 0
+  })
+}
+
 export const getAllText = async function (req: any, res: any, next: any): Promise<any> {
   const { page = 0, pageSize = 10 } = req.body
   const flow = CourseTextModel.find({})

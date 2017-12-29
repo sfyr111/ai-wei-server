@@ -2,6 +2,17 @@ import CourseColumnModel from '../../models/courseColumn/courseColumn'
 
 const DEFAULT_PROJECTION = { __v: 0 }
 
+export const addShareCount = async function (req: any, res: any, next: any): Promise<any> {
+  await CourseColumnModel.findByIdAndUpdate({ _id: req.params.id }, { $inc: { shareCount: 1 }}, { new: true })
+    .catch((e: any) => {
+      console.log(e)
+      throw new Error('addShareCount error')
+    })
+  res.json({
+    code: 0
+  })
+}
+
 export const getAllCloumn = async function (req: any, res: any, next: any): Promise<any> {
   const { page = 0, pageSize = 10 } = req.body
   const flow = CourseColumnModel.find({})

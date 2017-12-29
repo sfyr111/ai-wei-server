@@ -128,6 +128,10 @@ exports.loginWithWechat = function (req, res, next) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    console.log(req.ip);
+                    console.log(req.ipAddr);
+                    console.log(req.ipAddress);
+                    console.log(req.ips);
                     code = req.body.code;
                     if (!process.env.NODE_ENV) return [3 /*break*/, 1];
                     if (req.session.user) {

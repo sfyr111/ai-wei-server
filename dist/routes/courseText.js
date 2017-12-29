@@ -10,6 +10,8 @@ router.route('/')
 router.route('/:id')
     .get(CourseText.getOneTextById)
     .post(CourseText.addReadCount); // 观看次数
+router.route('/:id/share')
+    .post(CourseText.addShareCount); // 分享数
 // 播放完毕
 router.route('/:id/user/:userId/finished')
     .post(CourseText.addFinishedUser);

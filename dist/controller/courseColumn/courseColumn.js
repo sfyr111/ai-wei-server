@@ -37,6 +37,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var courseColumn_1 = require("../../models/courseColumn/courseColumn");
 var DEFAULT_PROJECTION = { __v: 0 };
+exports.addShareCount = function (req, res, next) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, courseColumn_1["default"].findByIdAndUpdate({ _id: req.params.id }, { $inc: { shareCount: 1 } }, { "new": true })["catch"](function (e) {
+                        console.log(e);
+                        throw new Error('addShareCount error');
+                    })];
+                case 1:
+                    _a.sent();
+                    res.json({
+                        code: 0
+                    });
+                    return [2 /*return*/];
+            }
+        });
+    });
+};
 exports.getAllCloumn = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
         var _a, _b, page, _c, pageSize, flow, column;

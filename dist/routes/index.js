@@ -120,11 +120,9 @@ router.route('/wechat/jssdk')
             switch (_a.label) {
                 case 0:
                     url = req.body.url;
-                    console.log(url);
                     return [4 /*yield*/, wechat_service_1.getJssdkConfig(url)];
                 case 1:
                     config = _a.sent();
-                    console.log(config);
                     res.json({
                         config: config,
                         code: 0

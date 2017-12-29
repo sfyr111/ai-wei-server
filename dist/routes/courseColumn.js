@@ -15,4 +15,6 @@ router.route('/classify/:classifyId')
 // 获取单个专栏信息
 router.route('/:id')
     .get(CourseColumn.getOneCloumnById);
+router.route('/:id/share')
+    .post(CourseColumn.addShareCount); // 分享数
 exports["default"] = router;

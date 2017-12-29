@@ -66,6 +66,10 @@ const testUser = {
 
 // a day 24 * 60 * 60 * 1000
 export const loginWithWechat = async function (req: any, res: any, next: any): Promise<any> {
+  console.log(req.ip)
+  console.log(req.ipAddr)
+  console.log(req.ipAddress)
+  console.log(req.ips)
   const { code } = req.body
   // if (code === 'test') {
   // if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {

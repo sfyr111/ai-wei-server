@@ -17,6 +17,7 @@ var CourseColumnSchema = new Schema({
     popularTitle: { type: String },
     isRelease: { type: Boolean },
     releaseTime: { type: Number },
+    shareCount: { type: Number, "default": 0 },
     type: { type: String },
     createTime: { type: Number, "default": Date.now().valueOf() },
     updateTime: { type: Number, "default": Date.now().valueOf() },

@@ -37,10 +37,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var user_1 = require("../../models/user/user");
 var courseColumn_1 = require("../../models/courseColumn/courseColumn");
+var redis_service_1 = require("../../services/redis-service");
 var WechatService = require("../../services/wechat-service");
 var JWT = require("jsonwebtoken");
 var cipher_1 = require("../../config/cipher");
 var DEFAULT_PROJECTION = { __v: 0 };
+var AI_WEI_SHARE_COUNT_OF_PAGE = 'AI_WEI_SHARE_COUNT_OF_PAGE';
+exports.sharePageCountToRedis = function (req, res, next) {
+    return __awaiter(this, void 0, void 0, function () {
+        var PAGE_KEY;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    PAGE_KEY = req.params.page.toUpperCase();
+                    return [4 /*yield*/, redis_service_1["default"].incr(AI_WEI_SHARE_COUNT_OF_PAGE + "_" + PAGE_KEY + ":")["catch"](function (e) { return console.log('sharePageCountToRedis error'); })];
+                case 1:
+                    _a.sent();
+                    res.send("share count ok by " + AI_WEI_SHARE_COUNT_OF_PAGE + "_" + PAGE_KEY + ":");
+                    return [2 /*return*/];
+            }
+        });
+    });
+};
 exports.getUsers = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
         var _a, _b, page, _c, pageSize, flow, users;
@@ -128,10 +146,6 @@ exports.loginWithWechat = function (req, res, next) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    console.log(req.ip);
-                    console.log(req.ipAddr);
-                    console.log(req.ipAddress);
-                    console.log(req.ips);
                     code = req.body.code;
                     if (!process.env.NODE_ENV) return [3 /*break*/, 1];
                     if (req.session.user) {

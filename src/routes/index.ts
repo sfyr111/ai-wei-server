@@ -80,6 +80,9 @@ router.route('/redirect/:url')
 router.route('/wechat/login')
   .post(User.loginWithWechat)
 
+router.route('/share/:page')
+  .post(User.sharePageCountToRedis)
+
 router.post('/test/:id', function (req: any, res: any, next: any): void {
   res.json({
     code: 0,

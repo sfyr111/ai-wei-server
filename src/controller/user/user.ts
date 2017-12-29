@@ -1,5 +1,6 @@
 import UserModel from '../../models/user/user'
 import CourseColumn from '../../models/courseColumn/courseColumn'
+import redis from '../../services/redis-service'
 import * as WechatService from '../../services/wechat-service'
 
 import * as JWT from 'jsonwebtoken'
@@ -8,6 +9,14 @@ import { Cipher } from '../../config/cipher'
 import { WechatUser } from '../../type'
 
 const DEFAULT_PROJECTION = { __v: 0 }
+const AI_WEI_SHARE_COUNT_OF_PAGE = 'AI_WEI_SHARE_COUNT_OF_PAGE'
+
+export const sharePageCountToRedis = async function (req: any, res: any, next: any): Promise<any> {
+  const PAGE_KEY = req.params.page.toUpperCase()
+  await redis.incr(`${AI_WEI_SHARE_COUNT_OF_PAGE}_${PAGE_KEY}:`)
+    .catch((e: any) => console.log('sharePageCountToRedis error'))
+  res.send(`share count ok by ${AI_WEI_SHARE_COUNT_OF_PAGE}_${PAGE_KEY}:`)
+}
 
 export const getUsers = async function (req: any, res: any, next: any): Promise<any> {
   const { page = 0, pageSize = 10 } = req.body
@@ -66,10 +75,10 @@ const testUser = {
 
 // a day 24 * 60 * 60 * 1000
 export const loginWithWechat = async function (req: any, res: any, next: any): Promise<any> {
-  console.log(req.ip)
-  console.log(req.ipAddr)
-  console.log(req.ipAddress)
-  console.log(req.ips)
+  // console.log(req.ip)
+  // console.log(req.ipAddr)
+  // console.log(req.ipAddress)
+  // console.log(req.ips)
   const { code } = req.body
   // if (code === 'test') {
   // if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {

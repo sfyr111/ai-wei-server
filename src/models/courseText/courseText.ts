@@ -17,7 +17,8 @@ const CourseTextSchema = new Schema({
   isOriginal: { type: Boolean }, // 是否为原创
   readCount: { type: Number, default: 0 }, // 阅读量
   shareCount: { type: Number, default: 0 }, // 分享量
-  agreedUsers: { type: Array }, // 阅读量
+  agreeCount: { type: Number, default: 0 }, // 赞同次数
+  agreedUsers: { type: Array }, // 赞同用户量
   articleImg: { type: String }, // 文章图片
   audio: { type: Schema.Types.Mixed, default: { title: '', url: '', playTime: -1, fileSize: '0M', finishedUsers: [] } }, // 文本课程音频数据
   isRelease: { type: Boolean }, // 是否发布

@@ -17,6 +17,7 @@ var CourseTextSchema = new Schema({
     isOriginal: { type: Boolean },
     readCount: { type: Number, "default": 0 },
     shareCount: { type: Number, "default": 0 },
+    agreeCount: { type: Number, "default": 0 },
     agreedUsers: { type: Array },
     articleImg: { type: String },
     audio: { type: Schema.Types.Mixed, "default": { title: '', url: '', playTime: -1, fileSize: '0M', finishedUsers: [] } },

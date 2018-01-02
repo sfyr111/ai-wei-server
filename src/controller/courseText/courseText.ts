@@ -2,11 +2,24 @@ import CourseTextModel from '../../models/courseText/courseText'
 
 const DEFAULT_PROJECTION = { __v: 0 }
 
+// 用户.length 赞同
+// export const addAgreeCount = async function (req: any, res: any, next: any): Promise<any> {
+//   const couterText = await CourseTextModel.findByIdAndUpdate({ _id: req.params.id }, { $addToSet: { agreedUsers: req.params.userId } }, { new: true })
+//     .catch((e: any) => {
+//       console.log(e)
+//       throw new Error('addReadedCount error')
+//     })
+//   res.json({
+//     code: 0,
+//     data: couterText
+//   })
+// }
+
 export const addAgreeCount = async function (req: any, res: any, next: any): Promise<any> {
-  const couterText = await CourseTextModel.findByIdAndUpdate({ _id: req.params.id }, { $addToSet: { agreedUsers: req.params.userId } }, { new: true })
+  const couterText = await CourseTextModel.findByIdAndUpdate({ _id: req.params.id }, { $inc: { agreeCount: 1 } }, { new: true })
     .catch((e: any) => {
       console.log(e)
-      throw new Error('addReadedCount error')
+      throw new Error('addAgreeCount error')
     })
   res.json({
     code: 0,

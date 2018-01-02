@@ -37,14 +37,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var courseText_1 = require("../../models/courseText/courseText");
 var DEFAULT_PROJECTION = { __v: 0 };
+// 用户.length 赞同
+// export const addAgreeCount = async function (req: any, res: any, next: any): Promise<any> {
+//   const couterText = await CourseTextModel.findByIdAndUpdate({ _id: req.params.id }, { $addToSet: { agreedUsers: req.params.userId } }, { new: true })
+//     .catch((e: any) => {
+//       console.log(e)
+//       throw new Error('addReadedCount error')
+//     })
+//   res.json({
+//     code: 0,
+//     data: couterText
+//   })
+// }
 exports.addAgreeCount = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
         var couterText;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, courseText_1["default"].findByIdAndUpdate({ _id: req.params.id }, { $addToSet: { agreedUsers: req.params.userId } }, { "new": true })["catch"](function (e) {
+                case 0: return [4 /*yield*/, courseText_1["default"].findByIdAndUpdate({ _id: req.params.id }, { $inc: { agreeCount: 1 } }, { "new": true })["catch"](function (e) {
                         console.log(e);
-                        throw new Error('addReadedCount error');
+                        throw new Error('addAgreeCount error');
                     })];
                 case 1:
                     couterText = _a.sent();

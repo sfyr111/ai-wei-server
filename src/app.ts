@@ -43,18 +43,18 @@ app.use(cookieParser())
 // app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use(session({
-  store: new RedisStore({ client: iredisclient, logErrors: true }),
-  // store: new RedisStore({ client: redisClient }),
-  secret: 'aiweixueyuan',
-  name: 'wid',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-    secure: false
-  }
-}))
+// app.use(session({
+//   store: new RedisStore({ client: iredisclient, logErrors: true }),
+//   // store: new RedisStore({ client: redisClient }),
+//   secret: 'aiweixueyuan',
+//   name: 'wid',
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: {
+//     maxAge: 7 * 24 * 60 * 60 * 1000,
+//     secure: false
+//   }
+// }))
 app.use('*', function (req, res, next) {
   // console.log('--------------------')
   // console.log(req.session)

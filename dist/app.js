@@ -8,7 +8,6 @@ var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var session = require("express-session");
 var connectRedis = require("connect-redis");
-var redis_service_1 = require("./services/redis-service");
 var index_1 = require("./routes/index");
 var user_1 = require("./routes/user");
 var courseClassify_1 = require("./routes/courseClassify");
@@ -35,18 +34,18 @@ app.use(cookieParser());
 // app.use(history())
 // app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-    store: new RedisStore({ client: redis_service_1["default"], logErrors: true }),
-    // store: new RedisStore({ client: redisClient }),
-    secret: 'aiweixueyuan',
-    name: 'wid',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-        secure: false
-    }
-}));
+// app.use(session({
+//   store: new RedisStore({ client: iredisclient, logErrors: true }),
+//   // store: new RedisStore({ client: redisClient }),
+//   secret: 'aiweixueyuan',
+//   name: 'wid',
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: {
+//     maxAge: 7 * 24 * 60 * 60 * 1000,
+//     secure: false
+//   }
+// }))
 app.use('*', function (req, res, next) {
     // console.log('--------------------')
     // console.log(req.session)

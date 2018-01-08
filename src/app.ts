@@ -18,6 +18,7 @@ import courseColumn from './routes/courseColumn'
 import courseVideo from './routes/courseVideo'
 import courseText from './routes/courseText'
 import banner from './routes/banner'
+import statistics from './routes/statistics'
 
 // import * as history from 'connect-history-api-fallback'
 
@@ -68,6 +69,7 @@ app.use('/column', courseColumn)
 app.use('/video', courseVideo)
 app.use('/text', courseText)
 app.use('/banner', banner)
+app.use('/statistics', statistics)
 
 
 // catch 404 and forward to error handler

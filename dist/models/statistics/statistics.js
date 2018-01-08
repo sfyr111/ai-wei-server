@@ -2,15 +2,39 @@
 exports.__esModule = true;
 var mongoose = require("mongoose");
 var moment = require("moment");
-var mongoose_1 = require("mongoose");
-var d = moment(Date.now()).format('YYYY-MM-DD');
-var timestamp = new Date(d).valueOf();
+var date = moment(Date.now()).format('YYYY-MM-DD');
+var timestamp = new Date(date).valueOf();
 var Schema = mongoose.Schema;
-// 统计
-var StatisticsSchema = new Schema({
+// 文本课程统计
+var TextPageSchema = new Schema({
+    textId: { type: String, ref: 'courseText' },
+    shareCount: { type: Number, "default": 0 },
+    viewCount: { type: Number, "default": 0 }
+});
+var TextPageStatisticsSchema = new Schema({
     countDate: { type: Number, "default": timestamp, required: true },
-    shareCount: mongoose_1.SchemaTypes.Mixed,
-    viewCount: mongoose_1.SchemaTypes.Mixed
+    pages: [TextPageSchema]
 }, { versionKey: false });
-var StatisticsModel = mongoose.model('statistics', StatisticsSchema, 'statistics');
-exports["default"] = StatisticsModel;
+exports.TextStatisticsModel = mongoose.model('text-statistics', TextPageStatisticsSchema, 'text-statistics');
+// 专栏统计
+var ColumnPageSchema = new Schema({
+    columnId: { type: String, ref: 'courseColumn' },
+    shareCount: { type: Number, "default": 0 },
+    viewCount: { type: Number, "default": 0 }
+});
+var ColumnPageStatisticsSchema = new Schema({
+    countDate: { type: Number, "default": timestamp, required: true },
+    pages: [ColumnPageSchema]
+}, { versionKey: false });
+exports.ColumnStatisticsModel = mongoose.model('column-statistics', ColumnPageStatisticsSchema, 'column-statistics');
+// 普通页面统计
+var CommonPageSchema = new Schema({
+    pageName: { type: String },
+    shareCount: { type: Number, "default": 0 },
+    viewCount: { type: Number, "default": 0 }
+});
+var CommonPageStatisticsSchema = new Schema({
+    countDate: { type: Number, "default": timestamp, required: true },
+    pages: [CommonPageSchema]
+}, { versionKey: false });
+exports.CommonPageStatisticsModel = mongoose.model('common-page-statistics', CommonPageStatisticsSchema, 'common-page-statistics');

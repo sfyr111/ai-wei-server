@@ -1,10 +1,9 @@
 import { TextStatisticsModel, ColumnStatisticsModel, CommonPageStatisticsModel } from '../../models/statistics/statistics'
 import * as moment from 'moment'
 
-const d = moment(Date.now()).format('YYYY-MM-DD')
-const timestamp = new Date(d).valueOf() // 当天时间戳
-
 export const CountTextCourse = async function (req: any, res: any): Promise<void> {
+  const d = moment(Date.now()).format('YYYY-MM-DD')
+  const timestamp = new Date(d).valueOf() // 当天时间戳
   let todayCount
   todayCount = await TextStatisticsModel.findOne({ countDate: timestamp })
   if (!todayCount) todayCount = await TextStatisticsModel.create({})
@@ -27,6 +26,8 @@ export const CountTextCourse = async function (req: any, res: any): Promise<void
 }
 
 export const CountColumnCourse = async function (req: any, res: any): Promise<void> {
+  const d = moment(Date.now()).format('YYYY-MM-DD')
+  const timestamp = new Date(d).valueOf() // 当天时间戳
   let todayCount
   todayCount = await ColumnStatisticsModel.findOne({ countDate: timestamp })
   if (!todayCount) todayCount = await ColumnStatisticsModel.create({})
@@ -49,6 +50,8 @@ export const CountColumnCourse = async function (req: any, res: any): Promise<vo
 }
 
 export const CountCommonPage = async function (req: any, res: any): Promise<void> {
+  const d = moment(Date.now()).format('YYYY-MM-DD')
+  const timestamp = new Date(d).valueOf() // 当天时间戳
   let todayCount
   todayCount = await CommonPageStatisticsModel.findOne({ countDate: timestamp })
   if (!todayCount) todayCount = await CommonPageStatisticsModel.create({})
@@ -71,6 +74,8 @@ export const CountCommonPage = async function (req: any, res: any): Promise<void
 }
 
 export const addCount = async function (req: any, res: any): Promise<void> {
+  const d = moment(Date.now()).format('YYYY-MM-DD')
+  const timestamp = new Date(d).valueOf() // 当天时间戳
   let Model
   if (req.params.countKey === 'textId') Model = TextStatisticsModel
   if (req.params.countKey === 'columnId') Model = ColumnStatisticsModel

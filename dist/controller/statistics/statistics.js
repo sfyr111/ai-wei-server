@@ -37,14 +37,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var statistics_1 = require("../../models/statistics/statistics");
 var moment = require("moment");
-var d = moment(Date.now()).format('YYYY-MM-DD');
-var timestamp = new Date(d).valueOf(); // 当天时间戳
 exports.CountTextCourse = function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var todayCount, pageCount;
+        var d, timestamp, todayCount, pageCount;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, statistics_1.TextStatisticsModel.findOne({ countDate: timestamp })];
+                case 0:
+                    d = moment(Date.now()).format('YYYY-MM-DD');
+                    timestamp = new Date(d).valueOf() // 当天时间戳
+                    ;
+                    return [4 /*yield*/, statistics_1.TextStatisticsModel.findOne({ countDate: timestamp })];
                 case 1:
                     todayCount = _a.sent();
                     if (!!todayCount) return [3 /*break*/, 3];
@@ -84,10 +86,14 @@ exports.CountTextCourse = function (req, res) {
 };
 exports.CountColumnCourse = function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var todayCount, pageCount;
+        var d, timestamp, todayCount, pageCount;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, statistics_1.ColumnStatisticsModel.findOne({ countDate: timestamp })];
+                case 0:
+                    d = moment(Date.now()).format('YYYY-MM-DD');
+                    timestamp = new Date(d).valueOf() // 当天时间戳
+                    ;
+                    return [4 /*yield*/, statistics_1.ColumnStatisticsModel.findOne({ countDate: timestamp })];
                 case 1:
                     todayCount = _a.sent();
                     if (!!todayCount) return [3 /*break*/, 3];
@@ -127,10 +133,14 @@ exports.CountColumnCourse = function (req, res) {
 };
 exports.CountCommonPage = function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var todayCount, pageCount;
+        var d, timestamp, todayCount, pageCount;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, statistics_1.CommonPageStatisticsModel.findOne({ countDate: timestamp })];
+                case 0:
+                    d = moment(Date.now()).format('YYYY-MM-DD');
+                    timestamp = new Date(d).valueOf() // 当天时间戳
+                    ;
+                    return [4 /*yield*/, statistics_1.CommonPageStatisticsModel.findOne({ countDate: timestamp })];
                 case 1:
                     todayCount = _a.sent();
                     if (!!todayCount) return [3 /*break*/, 3];
@@ -170,10 +180,13 @@ exports.CountCommonPage = function (req, res) {
 };
 exports.addCount = function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var Model, todayCount, pageCount, _a;
+        var d, timestamp, Model, todayCount, pageCount, _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
+                    d = moment(Date.now()).format('YYYY-MM-DD');
+                    timestamp = new Date(d).valueOf() // 当天时间戳
+                    ;
                     if (req.params.countKey === 'textId')
                         Model = statistics_1.TextStatisticsModel;
                     if (req.params.countKey === 'columnId')

@@ -6,8 +6,6 @@ var path = require("path");
 var logger = require("morgan");
 var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
-var session = require("express-session");
-var connectRedis = require("connect-redis");
 var index_1 = require("./routes/index");
 var user_1 = require("./routes/user");
 var courseClassify_1 = require("./routes/courseClassify");
@@ -20,7 +18,7 @@ var statistics_1 = require("./routes/statistics");
 // import * as history from 'connect-history-api-fallback'
 require("./services/mongoose-service");
 var app = express();
-var RedisStore = connectRedis(session);
+// const RedisStore = connectRedis(session)
 // const redisClient = redis.createClient(6379, '127.0.0.1')
 // const redisClient = redis.createClient(7003, '61.147.124.74')
 // view engine setup

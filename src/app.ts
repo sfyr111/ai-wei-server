@@ -4,10 +4,10 @@ import * as path from 'path'
 import * as logger from 'morgan'
 import * as cookieParser from 'cookie-parser'
 import * as bodyParser from 'body-parser'
-import * as session from 'express-session'
-import * as redis from 'redis'
-import * as connectRedis from 'connect-redis'
-import iredisclient from './services/redis-service'
+// import * as session from 'express-session'
+// import * as redis from 'redis'
+// import * as connectRedis from 'connect-redis'
+// import iredisclient from './services/redis-service'
 import * as cors from 'cors'
 
 import index from './routes/index'
@@ -26,7 +26,7 @@ import statistics from './routes/statistics'
 import './services/mongoose-service'
 
 var app = express()
-const RedisStore = connectRedis(session)
+// const RedisStore = connectRedis(session)
 // const redisClient = redis.createClient(6379, '127.0.0.1')
 // const redisClient = redis.createClient(7003, '61.147.124.74')
 

@@ -1,9 +1,6 @@
 "use strict";
 exports.__esModule = true;
 var mongoose = require("mongoose");
-var moment = require("moment");
-var date = moment(Date.now()).format('YYYY-MM-DD');
-var timestamp = new Date(date).valueOf();
 var Schema = mongoose.Schema;
 // 文本课程统计
 var TextPageSchema = new Schema({
@@ -12,7 +9,7 @@ var TextPageSchema = new Schema({
     viewCount: { type: Number, "default": 0 }
 });
 var TextPageStatisticsSchema = new Schema({
-    countDate: { type: Number, "default": timestamp, required: true },
+    countDate: { type: Number, required: true },
     pages: [TextPageSchema]
 }, { versionKey: false });
 exports.TextStatisticsModel = mongoose.model('text-statistics', TextPageStatisticsSchema, 'text-statistics');
@@ -23,7 +20,7 @@ var ColumnPageSchema = new Schema({
     viewCount: { type: Number, "default": 0 }
 });
 var ColumnPageStatisticsSchema = new Schema({
-    countDate: { type: Number, "default": timestamp, required: true },
+    countDate: { type: Number, required: true },
     pages: [ColumnPageSchema]
 }, { versionKey: false });
 exports.ColumnStatisticsModel = mongoose.model('column-statistics', ColumnPageStatisticsSchema, 'column-statistics');
@@ -34,7 +31,7 @@ var CommonPageSchema = new Schema({
     viewCount: { type: Number, "default": 0 }
 });
 var CommonPageStatisticsSchema = new Schema({
-    countDate: { type: Number, "default": timestamp, required: true },
+    countDate: { type: Number, required: true },
     pages: [CommonPageSchema]
 }, { versionKey: false });
 exports.CommonPageStatisticsModel = mongoose.model('common-page-statistics', CommonPageStatisticsSchema, 'common-page-statistics');

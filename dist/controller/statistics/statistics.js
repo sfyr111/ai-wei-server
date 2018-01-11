@@ -50,7 +50,7 @@ exports.CountTextCourse = function (req, res) {
                 case 1:
                     todayCount = _a.sent();
                     if (!!todayCount) return [3 /*break*/, 3];
-                    return [4 /*yield*/, statistics_1.TextStatisticsModel.create({})];
+                    return [4 /*yield*/, statistics_1.TextStatisticsModel.create({ countDate: timestamp })];
                 case 2:
                     todayCount = _a.sent();
                     _a.label = 3;
@@ -97,7 +97,7 @@ exports.CountColumnCourse = function (req, res) {
                 case 1:
                     todayCount = _a.sent();
                     if (!!todayCount) return [3 /*break*/, 3];
-                    return [4 /*yield*/, statistics_1.ColumnStatisticsModel.create({})];
+                    return [4 /*yield*/, statistics_1.ColumnStatisticsModel.create({ countDate: timestamp })];
                 case 2:
                     todayCount = _a.sent();
                     _a.label = 3;
@@ -144,7 +144,7 @@ exports.CountCommonPage = function (req, res) {
                 case 1:
                     todayCount = _a.sent();
                     if (!!todayCount) return [3 /*break*/, 3];
-                    return [4 /*yield*/, statistics_1.CommonPageStatisticsModel.create({})];
+                    return [4 /*yield*/, statistics_1.CommonPageStatisticsModel.create({ countDate: timestamp })];
                 case 2:
                     todayCount = _a.sent();
                     _a.label = 3;
@@ -197,7 +197,7 @@ exports.addCount = function (req, res) {
                 case 1:
                     todayCount = _b.sent();
                     if (!!todayCount) return [3 /*break*/, 3];
-                    return [4 /*yield*/, Model.create({})];
+                    return [4 /*yield*/, Model.create({ countDate: timestamp })];
                 case 2:
                     todayCount = _b.sent();
                     _b.label = 3;

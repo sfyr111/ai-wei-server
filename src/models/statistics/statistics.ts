@@ -1,8 +1,4 @@
 import * as mongoose from 'mongoose'
-import * as moment from 'moment'
-
-const date = moment(Date.now()).format('YYYY-MM-DD')
-const timestamp = new Date(date).valueOf()
 
 const Schema = mongoose.Schema
 
@@ -14,7 +10,7 @@ const TextPageSchema = new Schema({
 })
 
 const TextPageStatisticsSchema = new Schema({
-  countDate: { type: Number, default: timestamp, required: true },
+  countDate: { type: Number, required: true },
   pages: [TextPageSchema]
 }, { versionKey: false })
 
@@ -28,7 +24,7 @@ const ColumnPageSchema = new Schema({
 })
 
 const ColumnPageStatisticsSchema = new Schema({
-  countDate: { type: Number, default: timestamp, required: true },
+  countDate: { type: Number, required: true },
   pages: [ColumnPageSchema]
 }, { versionKey: false })
 
@@ -43,7 +39,7 @@ const CommonPageSchema = new Schema({
 })
 
 const CommonPageStatisticsSchema = new Schema({
-  countDate: { type: Number, default: timestamp, required: true },
+  countDate: { type: Number, required: true },
   pages: [CommonPageSchema]
 }, { versionKey: false })
 

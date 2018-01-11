@@ -6,7 +6,7 @@ export const CountTextCourse = async function (req: any, res: any): Promise<void
   const timestamp = new Date(d).valueOf() // 当天时间戳
   let todayCount
   todayCount = await TextStatisticsModel.findOne({ countDate: timestamp })
-  if (!todayCount) todayCount = await TextStatisticsModel.create({})
+  if (!todayCount) todayCount = await TextStatisticsModel.create({ countDate: timestamp })
   let pageCount = todayCount.pages.find((el: any) => el.textId === req.params.textId)
   if (!pageCount) {
     await todayCount.update({ $push: { pages: {
@@ -30,7 +30,7 @@ export const CountColumnCourse = async function (req: any, res: any): Promise<vo
   const timestamp = new Date(d).valueOf() // 当天时间戳
   let todayCount
   todayCount = await ColumnStatisticsModel.findOne({ countDate: timestamp })
-  if (!todayCount) todayCount = await ColumnStatisticsModel.create({})
+  if (!todayCount) todayCount = await ColumnStatisticsModel.create({ countDate: timestamp })
   let pageCount = todayCount.pages.find((el: any) => el.columnId === req.params.columnId)
   if (!pageCount) {
     await todayCount.update({ $push: { pages: {
@@ -54,7 +54,7 @@ export const CountCommonPage = async function (req: any, res: any): Promise<void
   const timestamp = new Date(d).valueOf() // 当天时间戳
   let todayCount
   todayCount = await CommonPageStatisticsModel.findOne({ countDate: timestamp })
-  if (!todayCount) todayCount = await CommonPageStatisticsModel.create({})
+  if (!todayCount) todayCount = await CommonPageStatisticsModel.create({ countDate: timestamp })
   let pageCount = todayCount.pages.find((el: any) => el.pageName === req.params.pageName)
   if (!pageCount) {
     await todayCount.update({ $push: { pages: {
@@ -82,7 +82,7 @@ export const addCount = async function (req: any, res: any): Promise<void> {
   if (req.params.countKey === 'pageName') Model = CommonPageStatisticsModel
   let todayCount
   todayCount = await Model.findOne({ countDate: timestamp })
-  if (!todayCount) todayCount = await Model.create({})
+  if (!todayCount) todayCount = await Model.create({ countDate: timestamp })
   let pageCount = todayCount.pages.find((el: any) => el[req.params.countKey] === req.params.countValue)
   if (!pageCount) {
     await todayCount.update({ $push: { pages: {

@@ -23,6 +23,7 @@ const CourseTextSchema = new Schema({
   audio: { type: Schema.Types.Mixed, default: { title: '', url: '', playTime: -1, fileSize: '0M', finishedUsers: [] } }, // 文本课程音频数据
   isRelease: { type: Boolean }, // 是否发布
   releaseTime: { type: Number }, // 发布时间
+  sort: { type: Number, default: 0 }, // 排序值
   createTime: { type: Number, default: Date.now().valueOf() },
   updateTime: { type: Number, default: Date.now().valueOf() }
 }, { versionKey: false })

@@ -185,7 +185,7 @@ exports.getManyTextByColumnId = function (req, res, next) {
                     flow.select(DEFAULT_PROJECTION);
                     flow.skip(page * pageSize);
                     flow.limit(pageSize);
-                    flow.sort({ createTime: -1 });
+                    flow.sort({ sort: 1, createTime: -1 });
                     return [4 /*yield*/, flow["catch"](function (e) {
                             console.log(e);
                             throw new Error('getManyTextByColumnId error');
@@ -212,7 +212,7 @@ exports.getManyTextByClassifyId = function (req, res, next) {
                     flow.select(DEFAULT_PROJECTION);
                     flow.skip(page * pageSize);
                     flow.limit(pageSize);
-                    flow.sort({ createTime: -1 });
+                    flow.sort({ sort: 1, createTime: -1 });
                     return [4 /*yield*/, flow["catch"](function (e) {
                             console.log(e);
                             throw new Error('getManyTextByClassifyId error');

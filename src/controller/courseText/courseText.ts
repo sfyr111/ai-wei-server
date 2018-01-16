@@ -100,7 +100,7 @@ export const getManyTextByColumnId = async function (req: any, res: any, next: a
   flow.select(DEFAULT_PROJECTION)
   flow.skip(page * pageSize)
   flow.limit(pageSize)
-  flow.sort({ createTime: -1 })
+  flow.sort({ sort: 1, createTime: -1 })
 
   const text = await flow
     .catch((e: any): void => {
@@ -119,7 +119,7 @@ export const getManyTextByClassifyId = async function (req: any, res: any, next:
   flow.select(DEFAULT_PROJECTION)
   flow.skip(page * pageSize)
   flow.limit(pageSize)
-  flow.sort({ createTime: -1 })
+  flow.sort({ sort: 1, createTime: -1 })
 
   const text = await flow
     .catch((e: any): void => {

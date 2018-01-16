@@ -19,6 +19,7 @@ const CourseColumnSchema = new Schema({
   releaseTime: { type: Number }, // 发布时间
   shareCount: { type: Number, default: 0 }, // 分享量
   type: { type: String }, // 课程类型，文本: text, 音频: audio, 视频: video
+  sort: { type: Number, default: 0 }, // 排序值
   createTime: { type: Number, default: Date.now().valueOf() },
   updateTime: { type: Number, default: Date.now().valueOf() },
   numberOfUpdate: { type: Number, default: 1 } // 第几期课程

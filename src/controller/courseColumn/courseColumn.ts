@@ -49,7 +49,7 @@ export const getOneCloumnById = async function (req: any, res: any, next: any): 
 export const getManyCloumnByClassifyId = async function (req: any, res: any, next: any): Promise<any> {
   const flow = CourseColumnModel.find({ classifyId: req.params.classifyId, isRelease: true })
   flow.select(DEFAULT_PROJECTION)
-  flow.sort({ createTime: -1 })
+  flow.sort({ sort: 1, createTime: -1 })
 
   const column = await flow
     .catch((e: any): void => {
@@ -65,7 +65,7 @@ export const getManyCloumnByClassifyId = async function (req: any, res: any, nex
 export const getPopularCloumn = async function (req: any, res: any, next: any): Promise<any> {
   const flow = CourseColumnModel.find({ popular: true, isRelease: true })
   flow.select(DEFAULT_PROJECTION)
-  flow.sort({ createTime: -1 })
+  flow.sort({ sort: 1, createTime: -1 })
 
   const column = await flow
     .catch((e: any): void => {

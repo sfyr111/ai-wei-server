@@ -64,8 +64,9 @@ exports.getAllCloumn = function (req, res, next) {
                     _a = req.body, _b = _a.page, page = _b === void 0 ? 0 : _b, _c = _a.pageSize, pageSize = _c === void 0 ? 10 : _c;
                     flow = courseColumn_1["default"].find({});
                     flow.select(DEFAULT_PROJECTION);
-                    flow.skip(page * pageSize);
-                    flow.limit(pageSize);
+                    // flow.skip(page * pageSize)
+                    // flow.limit(pageSize)
+                    flow.sort({ sort: 1, createTime: -1 });
                     return [4 /*yield*/, flow["catch"](function (e) {
                             console.log(e);
                             throw new Error('getAllCloumn error');

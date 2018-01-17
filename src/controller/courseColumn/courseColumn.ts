@@ -17,8 +17,9 @@ export const getAllCloumn = async function (req: any, res: any, next: any): Prom
   const { page = 0, pageSize = 10 } = req.body
   const flow = CourseColumnModel.find({})
   flow.select(DEFAULT_PROJECTION)
-  flow.skip(page * pageSize)
-  flow.limit(pageSize)
+  // flow.skip(page * pageSize)
+  // flow.limit(pageSize)
+  flow.sort({ sort: 1, createTime: -1 })
 
   const column = await flow
     .catch((e: any): void => {

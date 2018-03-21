@@ -1,28 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5d198380-7901-4678-bc06-8902f1ffe2cf" name="Default" comment="fix share url">
+    <list default="true" id="5d198380-7901-4678-bc06-8902f1ffe2cf" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/controller/banner/banner.js" afterPath="$PROJECT_DIR$/dist/controller/banner/banner.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/controller/banner/courseText.js" afterPath="$PROJECT_DIR$/dist/controller/banner/courseText.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/controller/courseAudio/courseAudio.js" afterPath="$PROJECT_DIR$/dist/controller/courseAudio/courseAudio.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/controller/courseClassify/courseClassify.js" afterPath="$PROJECT_DIR$/dist/controller/courseClassify/courseClassify.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/controller/courseColumn/courseColumn.js" afterPath="$PROJECT_DIR$/dist/controller/courseColumn/courseColumn.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/controller/courseText/courseText.js" afterPath="$PROJECT_DIR$/dist/controller/courseText/courseText.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/controller/courseText/courseVideo.js" afterPath="$PROJECT_DIR$/dist/controller/courseText/courseVideo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/controller/courseVideo/courseAudio.js" afterPath="$PROJECT_DIR$/dist/controller/courseVideo/courseAudio.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/controller/courseVideo/courseVideo.js" afterPath="$PROJECT_DIR$/dist/controller/courseVideo/courseVideo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/controller/favorite/favorite.js" afterPath="$PROJECT_DIR$/dist/controller/favorite/favorite.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/controller/user/user.js" afterPath="$PROJECT_DIR$/dist/controller/user/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app.ts" afterPath="$PROJECT_DIR$/src/app.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bin/www.ts" afterPath="$PROJECT_DIR$/src/bin/www.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/banner/banner.ts" afterPath="$PROJECT_DIR$/src/controller/banner/banner.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/courseAudio/courseAudio.ts" afterPath="$PROJECT_DIR$/src/controller/courseAudio/courseAudio.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/courseClassify/courseClassify.ts" afterPath="$PROJECT_DIR$/src/controller/courseClassify/courseClassify.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/courseColumn/courseColumn.ts" afterPath="$PROJECT_DIR$/src/controller/courseColumn/courseColumn.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/courseText/courseText.ts" afterPath="$PROJECT_DIR$/src/controller/courseText/courseText.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/courseVideo/courseVideo.ts" afterPath="$PROJECT_DIR$/src/controller/courseVideo/courseVideo.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/user/user.ts" afterPath="$PROJECT_DIR$/src/controller/user/user.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/services/redis-service.js" afterPath="$PROJECT_DIR$/dist/services/redis-service.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/redis-service.ts" afterPath="$PROJECT_DIR$/src/services/redis-service.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -82,7 +64,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tsconfig.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tsconfig.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tsconfig.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="293">
@@ -92,11 +74,31 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="mongoose-service.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/services/mongoose-service.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="redis-service.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/services/redis-service.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="app.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="76" column="14" lean-forward="false" selection-start-line="76" selection-start-column="14" selection-end-line="76" selection-end-column="14" />
+            <state relative-caret-position="135">
+              <caret line="20" column="44" lean-forward="true" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -123,7 +125,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ACCESS_TOKEN</find>
       <find>mongo</find>
       <find>testUser</find>
       <find>hist</find>
@@ -143,7 +144,6 @@
       <find>countValue</find>
       <find>params</find>
       <find>todayCount</find>
-      <find>redis</find>
       <find>connectRedis</find>
       <find>Redis</find>
       <find>servise</find>
@@ -153,6 +153,8 @@
       <find>const { page = 0, pageSize = 10 }</find>
       <find>const { page = 0, pageSize = 10 } = req.body</find>
       <find>flow.skip(page * pageSize)</find>
+      <find>redis</find>
+      <find>RedisStore = connectRedis(session)</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/node_modules</dir>
@@ -201,7 +203,6 @@
         <option value="$PROJECT_DIR$/dist/config/wechat.js" />
         <option value="$PROJECT_DIR$/src/routes/statistics.ts" />
         <option value="$PROJECT_DIR$/src/routes/user.ts" />
-        <option value="$PROJECT_DIR$/src/services/redis-service.ts" />
         <option value="$PROJECT_DIR$/src/models/statistics/statistics.ts" />
         <option value="$PROJECT_DIR$/src/controller/statistics/statistics.ts" />
         <option value="$PROJECT_DIR$/src/models/courseText/courseText.ts" />
@@ -215,6 +216,7 @@
         <option value="$PROJECT_DIR$/src/controller/courseColumn/courseColumn.ts" />
         <option value="$PROJECT_DIR$/src/app.ts" />
         <option value="$PROJECT_DIR$/src/bin/www.ts" />
+        <option value="$PROJECT_DIR$/src/services/redis-service.ts" />
       </list>
     </option>
   </component>
@@ -350,6 +352,12 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
               <item name="courseClassify" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ai-wei-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ai-wei-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -562,14 +570,7 @@
       <workItem from="1516017498522" duration="925000" />
       <workItem from="1516073384795" duration="1118000" />
       <workItem from="1516177250497" duration="276000" />
-      <workItem from="1521648872015" duration="674000" />
-    </task>
-    <task id="LOCAL-00023" summary="增加文本课程数据结构&#10;增加专栏课程数据结构&#10;增加文本阅读量、点赞逻辑">
-      <created>1513082284365</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1513082284365</updated>
+      <workItem from="1521648872015" duration="977000" />
     </task>
     <task id="LOCAL-00024" summary="点赞 返回数据">
       <created>1513087181599</created>
@@ -907,11 +908,18 @@
       <option name="project" value="LOCAL" />
       <updated>1516177435811</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="fix skip limit">
+      <created>1521649576575</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1521649576576</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="462463000" />
+    <option name="totallyTimeSpent" value="462766000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="952" extended-state="0" />
@@ -954,7 +962,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="》" />
     <MESSAGE value="增加jssdk" />
     <MESSAGE value="fix wx.ready" />
     <MESSAGE value="fix restcss" />
@@ -979,7 +986,8 @@
     <MESSAGE value="fix 统计日期" />
     <MESSAGE value="add sort feid" />
     <MESSAGE value="add sort all column" />
-    <option name="LAST_COMMIT_MESSAGE" value="add sort all column" />
+    <MESSAGE value="fix skip limit" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix skip limit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1205,13 +1213,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/mongoose-service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/statistics/statistics.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
@@ -1223,13 +1224,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/redis-service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1360,14 +1354,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="76" column="14" lean-forward="false" selection-start-line="76" selection-start-column="14" selection-end-line="76" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bin/www.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
@@ -1380,6 +1366,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
           <caret line="58" column="22" lean-forward="true" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/mongoose-service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="20" column="44" lean-forward="true" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/redis-service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>

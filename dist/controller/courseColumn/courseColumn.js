@@ -61,7 +61,7 @@ exports.getAllCloumn = function (req, res, next) {
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0:
-                    _a = req.body, _b = _a.page, page = _b === void 0 ? 0 : _b, _c = _a.pageSize, pageSize = _c === void 0 ? 10 : _c;
+                    _a = req.query, _b = _a.page, page = _b === void 0 ? 0 : _b, _c = _a.pageSize, pageSize = _c === void 0 ? 10 : _c;
                     flow = courseColumn_1["default"].find({});
                     flow.select(DEFAULT_PROJECTION);
                     // flow.skip(page * pageSize)

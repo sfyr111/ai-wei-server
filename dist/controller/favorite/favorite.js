@@ -44,8 +44,8 @@ exports.getAllColumnWithFavorite = function (req, res, next) {
         const { page = 0, pageSize = 30 } = req.body;
         const flow = favorite_1.default.find({});
         flow.select(DEFAULT_PROJECTION);
-        flow.skip(page * pageSize);
-        flow.limit(pageSize);
+        // flow.skip(page * pageSize);
+        // flow.limit(pageSize);
         const columns = yield flow
             .catch((e) => {
             console.log(e);

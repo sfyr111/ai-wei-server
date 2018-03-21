@@ -43,11 +43,9 @@ exports.getAllAudio = function (req, res, next) {
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0:
-                    _a = req.body, _b = _a.page, page = _b === void 0 ? 0 : _b, _c = _a.pageSize, pageSize = _c === void 0 ? 10 : _c;
+                    _a = req.query, _b = _a.page, page = _b === void 0 ? 0 : _b, _c = _a.pageSize, pageSize = _c === void 0 ? 10 : _c;
                     flow = courseAudio_1["default"].find({});
                     flow.select(DEFAULT_PROJECTION);
-                    flow.skip(page * pageSize);
-                    flow.limit(pageSize);
                     return [4 /*yield*/, flow["catch"](function (e) {
                             console.log(e);
                             throw new Error('getAllAudio error');
@@ -92,11 +90,9 @@ exports.getManyAudioByColumnId = function (req, res, next) {
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0:
-                    _a = req.body, _b = _a.page, page = _b === void 0 ? 0 : _b, _c = _a.pageSize, pageSize = _c === void 0 ? 10 : _c;
+                    _a = req.query, _b = _a.page, page = _b === void 0 ? 0 : _b, _c = _a.pageSize, pageSize = _c === void 0 ? 10 : _c;
                     flow = courseAudio_1["default"].find({ columnId: req.params.columnId });
                     flow.select(DEFAULT_PROJECTION);
-                    flow.skip(page * pageSize);
-                    flow.limit(pageSize);
                     return [4 /*yield*/, flow["catch"](function (e) {
                             console.log(e);
                             throw new Error('getManyAudioByColumnId error');
@@ -118,11 +114,9 @@ exports.getManyAudioByClassifyId = function (req, res, next) {
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0:
-                    _a = req.body, _b = _a.page, page = _b === void 0 ? 0 : _b, _c = _a.pageSize, pageSize = _c === void 0 ? 10 : _c;
+                    _a = req.query, _b = _a.page, page = _b === void 0 ? 0 : _b, _c = _a.pageSize, pageSize = _c === void 0 ? 10 : _c;
                     flow = courseAudio_1["default"].find({ classifyId: req.params.classifyId });
                     flow.select(DEFAULT_PROJECTION);
-                    flow.skip(page * pageSize);
-                    flow.limit(pageSize);
                     return [4 /*yield*/, flow["catch"](function (e) {
                             console.log(e);
                             throw new Error('getManyAudioByClassifyId error');

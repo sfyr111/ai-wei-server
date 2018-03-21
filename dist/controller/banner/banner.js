@@ -39,21 +39,18 @@ var banner_1 = require("../../models/banner/banner");
 var DEFAULT_PROJECTION = { __v: 0 };
 exports.getAllBanner = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, _b, page, _c, pageSize, flow, banners;
-        return __generator(this, function (_d) {
-            switch (_d.label) {
+        var flow, banners;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _a = req.body, _b = _a.page, page = _b === void 0 ? 0 : _b, _c = _a.pageSize, pageSize = _c === void 0 ? 10 : _c;
                     flow = banner_1["default"].find({});
                     flow.select(DEFAULT_PROJECTION);
-                    flow.skip(page * pageSize);
-                    flow.limit(pageSize);
                     return [4 /*yield*/, flow["catch"](function (e) {
                             console.log(e);
                             throw new Error('getAllBanner error');
                         })];
                 case 1:
-                    banners = _d.sent();
+                    banners = _a.sent();
                     res.json({
                         code: 0,
                         banners: banners
@@ -65,21 +62,18 @@ exports.getAllBanner = function (req, res, next) {
 };
 exports.getBannerById = function (req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, _b, page, _c, pageSize, flow, banner;
-        return __generator(this, function (_d) {
-            switch (_d.label) {
+        var flow, banner;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _a = req.body, _b = _a.page, page = _b === void 0 ? 0 : _b, _c = _a.pageSize, pageSize = _c === void 0 ? 10 : _c;
                     flow = banner_1["default"].find({ _id: req.params.id });
                     flow.select(DEFAULT_PROJECTION);
-                    flow.skip(page * pageSize);
-                    flow.limit(pageSize);
                     return [4 /*yield*/, flow["catch"](function (e) {
                             console.log(e);
                             throw new Error('getBannerById error');
                         })];
                 case 1:
-                    banner = _d.sent();
+                    banner = _a.sent();
                     res.json({
                         code: 0,
                         banner: banner

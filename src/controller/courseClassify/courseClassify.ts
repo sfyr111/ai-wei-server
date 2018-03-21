@@ -3,11 +3,11 @@ import CourseClassifyModel from '../../models/courseClassify/courseClassify'
 const DEFAULT_PROJECTION = { __v: 0 }
 
 export const getAllClassify = async function (req: any, res: any, next: any): Promise<any> {
-  const { page = 0, pageSize = 10 } = req.body
+  const { page = 0, pageSize = 10 } = req.query
   const flow = CourseClassifyModel.find({})
   flow.select(DEFAULT_PROJECTION)
-  flow.skip(page * pageSize)
-  flow.limit(pageSize)
+  // flow.skip(page * pageSize)
+  // flow.limit(pageSize)
 
   const classify = await flow
     .catch((e: any): void => {

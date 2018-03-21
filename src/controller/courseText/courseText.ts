@@ -62,11 +62,11 @@ export const addShareCount = async function (req: any, res: any, next: any): Pro
 }
 
 export const getAllText = async function (req: any, res: any, next: any): Promise<any> {
-  const { page = 0, pageSize = 10 } = req.body
+  const { page = 0, pageSize = 10 } = req.query
   const flow = CourseTextModel.find({})
   flow.select(DEFAULT_PROJECTION)
-  flow.skip(page * pageSize)
-  flow.limit(pageSize)
+  // flow.skip(page * pageSize)
+  // flow.limit(pageSize)
 
   const text = await flow
     .catch((e: any): void => {
@@ -95,11 +95,11 @@ export const getOneTextById = async function (req: any, res: any, next: any): Pr
 }
 
 export const getManyTextByColumnId = async function (req: any, res: any, next: any): Promise<any> {
-  const { page = 0, pageSize = 10 } = req.body
+  const { page = 0, pageSize = 10 } = req.query
   const flow = CourseTextModel.find({ columnId: req.params.columnId, isRelease: true })
   flow.select(DEFAULT_PROJECTION)
-  flow.skip(page * pageSize)
-  flow.limit(pageSize)
+  // flow.skip(page * pageSize)
+  // flow.limit(pageSize)
   flow.sort({ sort: 1, createTime: -1 })
 
   const text = await flow
@@ -114,11 +114,11 @@ export const getManyTextByColumnId = async function (req: any, res: any, next: a
 }
 
 export const getManyTextByClassifyId = async function (req: any, res: any, next: any): Promise<any> {
-  const { page = 0, pageSize = 10 } = req.body
+  const { page = 0, pageSize = 10 } = req.query
   const flow = CourseTextModel.find({ classifyId: req.params.classifyId, isRelease: true })
   flow.select(DEFAULT_PROJECTION)
-  flow.skip(page * pageSize)
-  flow.limit(pageSize)
+  // flow.skip(page * pageSize)
+  // flow.limit(pageSize)
   flow.sort({ sort: 1, createTime: -1 })
 
   const text = await flow

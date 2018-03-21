@@ -15,8 +15,8 @@ exports.getAllVideo = function (req, res, next) {
         const { page = 0, pageSize = 10 } = req.body;
         const flow = courseVideo_1.default.find({});
         flow.select(DEFAULT_PROJECTION);
-        flow.skip(page * pageSize);
-        flow.limit(pageSize);
+        // flow.skip(page * pageSize);
+        // flow.limit(pageSize);
         const video = yield flow
             .catch((e) => {
             console.log(e);
@@ -48,8 +48,8 @@ exports.getManyVideoByColumnId = function (req, res, next) {
         const { page = 0, pageSize = 10 } = req.body;
         const flow = courseVideo_1.default.find({ columnId: req.params.columnId });
         flow.select(DEFAULT_PROJECTION);
-        flow.skip(page * pageSize);
-        flow.limit(pageSize);
+        // flow.skip(page * pageSize);
+        // flow.limit(pageSize);
         const video = yield flow
             .catch((e) => {
             console.log(e);
@@ -66,8 +66,8 @@ exports.getManyVideoByClassifyId = function (req, res, next) {
         const { page = 0, pageSize = 10 } = req.body;
         const flow = courseVideo_1.default.find({ classifyId: req.params.classifyId });
         flow.select(DEFAULT_PROJECTION);
-        flow.skip(page * pageSize);
-        flow.limit(pageSize);
+        // flow.skip(page * pageSize);
+        // flow.limit(pageSize);
         const video = yield flow
             .catch((e) => {
             console.log(e);

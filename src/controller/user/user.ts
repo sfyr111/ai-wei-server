@@ -19,11 +19,11 @@ export const sharePageCountToRedis = async function (req: any, res: any, next: a
 }
 
 export const getUsers = async function (req: any, res: any, next: any): Promise<any> {
-  const { page = 0, pageSize = 10 } = req.body
+  const { page = 0, pageSize = 10 } = req.query
   const flow = UserModel.find({})
   flow.select(DEFAULT_PROJECTION)
-  flow.skip(page * pageSize)
-  flow.limit(pageSize)
+  // flow.skip(page * pageSize)
+  // flow.limit(pageSize)
 
   const users = await flow
     .catch((e: any): void => {

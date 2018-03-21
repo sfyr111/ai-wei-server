@@ -74,7 +74,7 @@ app.use('/statistics', statistics)
 
 // catch 404 and forward to error handler
 app.use(function(req: any, res: any, next: any) {
-  var err = new Error('Not Found')
+  var err: any = new Error('Not Found')
   err.status = 404
   next(err)
 })

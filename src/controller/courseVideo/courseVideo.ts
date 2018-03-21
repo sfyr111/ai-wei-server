@@ -14,11 +14,11 @@ export const addPlayCount = async function (req: any, res: any, next: any): Prom
 }
 
 export const getAllVideo = async function (req: any, res: any, next: any): Promise<any> {
-  const { page = 0, pageSize = 10 } = req.body
+  const { page = 0, pageSize = 10 } = req.query
   const flow = CourseVideoModel.find({})
   flow.select(DEFAULT_PROJECTION)
-  flow.skip(page * pageSize)
-  flow.limit(pageSize)
+  // flow.skip(page * pageSize)
+  // flow.limit(pageSize)
 
   const video = await flow
     .catch((e: any): void => {
@@ -47,11 +47,11 @@ export const getOneVideoById = async function (req: any, res: any, next: any): P
 }
 
 export const getManyVideoByColumnId = async function (req: any, res: any, next: any): Promise<any> {
-  const { page = 0, pageSize = 10 } = req.body
+  const { page = 0, pageSize = 10 } = req.query
   const flow = CourseVideoModel.find({ columnId: req.params.columnId, isRelease: true })
   flow.select(DEFAULT_PROJECTION)
-  flow.skip(page * pageSize)
-  flow.limit(pageSize)
+  // flow.skip(page * pageSize)
+  // flow.limit(pageSize)
   flow.sort({ createTime: -1 })
 
   const video = await flow
@@ -66,11 +66,11 @@ export const getManyVideoByColumnId = async function (req: any, res: any, next: 
 }
 
 export const getManyVideoByClassifyId = async function (req: any, res: any, next: any): Promise<any> {
-  const { page = 0, pageSize = 10 } = req.body
+  const { page = 0, pageSize = 10 } = req.query
   const flow = CourseVideoModel.find({ classifyId: req.params.classifyId, isRelease: true })
   flow.select(DEFAULT_PROJECTION)
-  flow.skip(page * pageSize)
-  flow.limit(pageSize)
+  // flow.skip(page * pageSize)
+  // flow.limit(pageSize)
   flow.sort({ createTime: -1 })
 
   const video = await flow
